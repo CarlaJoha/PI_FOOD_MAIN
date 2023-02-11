@@ -18,7 +18,7 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn } = require('./src/db.js');//Acá me estoy trayendo la database(sequalize)
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
