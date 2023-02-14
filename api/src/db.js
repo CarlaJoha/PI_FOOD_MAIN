@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, API_KEY } = process.env;
 
+
+//CREACION DE LA BASE DE DATOS
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?api_key=${API_KEY}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -30,9 +32,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Recipe, Diet } = sequelize.models;
 
-
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+//debe ser de muchos a muchos
+Recipe.belongsToMany(Diet, { through:'Recipe_Diets' })
+Diet.belongsToMany(Recipe, { through:'Recipe_Diets' })
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

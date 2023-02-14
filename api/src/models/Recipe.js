@@ -19,20 +19,29 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
+      allowNull: true,//NO es obligatoria - EST
     },
 
-    brief: {
+    summary: {
       type: DataTypes.TEXT,
+      allowNull: false,//SI es obligatorio
     },
 
-    healtyScore: {
+    healthScore: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
 
-    directions: {
+    instructions: {
       type: DataTypes.TEXT,
+      allowNull: false,
+    },
+
+    createdInDb: {//esta me sirve para la creación de recetas, que estarán en DB
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   },
   {
