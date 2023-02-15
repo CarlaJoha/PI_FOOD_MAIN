@@ -2,14 +2,44 @@ require('dotenv').config();// m etraigo lo que está en .env, la info ahora la m
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, API_KEY } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 
 //CREACION DE LA BASE DE DATOS
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?api_key=${API_KEY}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?api_key=${API_KEY}`, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
+let sequelize =
+  process.env.NODE_ENV === "production"
+    ? new Sequelize({
+      database: DB_NAME,
+      dialect: "postgres",
+      host: DB_HOST,
+      port: DB_PORT,
+      username: DB_USER,
+      password: DB_PASSWORD,
+      pool: {
+        max: 3,
+        min: 1,
+        idle: 10000,
+      },
+      dialectOptions: {
+        ssl: {
+          require: true,
+          // Ref.: https://github.com/brianc/node-postgres/issues/2009
+          rejectUnauthorized: false,
+        },
+        keepAlive: true,
+      },
+      ssl: true,
+    })
+    : new Sequelize(
+      `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`,
+      { logging: false, native: false }
+    );
+
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

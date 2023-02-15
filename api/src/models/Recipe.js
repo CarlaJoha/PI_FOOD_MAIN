@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
 
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -28,19 +28,18 @@ module.exports = (sequelize) => {
     },
 
     healthScore: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+      type: DataTypes.FLOAT,
+      allowNull: true,
     },
 
     instructions: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      allowNull: true,
     },
 
     createdInDb: {//esta me sirve para la creación de recetas, que estarán en DB
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: true
     }
   },
