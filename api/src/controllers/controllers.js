@@ -1,5 +1,5 @@
-// require('dotenv').config();// me traigo lo que está en .env, la info ahora la maneja process.env
-// const { API_KEY } = process.env;
+require('dotenv').config();// me traigo lo que está en .env, la info ahora la maneja process.env
+const { API_KEY } = process.env;
 const axios = require('axios');
 const { Recipe, Diet } = require('../db')
 
@@ -11,19 +11,21 @@ const getAllApi = async() => {
    try{
      const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
     
-     console.log(apiUrl)
+
    let recipesApi = apiUrl.data.results.map((element) => {
-   return {
-      id: element.id,
-      name: element.title,
-      image: element.image,
-      summary: element.summary,
-      healthScore: element.healthScore,
-      diets: element.diets.map((diet) => diet),
-      instructions: element.analyzedInstructions.map((steps) => steps)
-      }
+      return {
+         id: element.id,
+         name: element.title,
+         image: element.image,
+         healthScore: element.healthScore,
+         summary: element.summary,
+         // diets: element.diets.map((diet) => diet),
+         diets: element.diets,
+         instructions: element.analyzedInstructions.map((steps) => steps)
+         }
    })
    return recipesApi;
+   
    } catch(error){
       console.log('Error en getAllApi controller');
    }
@@ -61,6 +63,36 @@ const getAllInfo = async () => {
    }
 };
 
+//OBTENER LAS RECETAS POR NOMBRE
+const getRecipesByName  = async (name) => {
+   try{
+   let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+   const search = response.data.results.filter((recipe) => recipe.title.toLowerCase().includes(name.toLowerCase()) === true)
+   if(search.length > 0){
+      
+      let recipesMatchName = search.map((element) => {
+         return {
+            id: element.id,
+            name: element.title,
+            image: element.image,
+            healthScore: element.healthScore,
+            summary: element.summary,
+            diets: element.diets.map((diet) => diet),
+            instructions: element.analyzedInstructions.map((steps) => steps)
+            }
+      })
+      return recipesMatchName;
+      } else{
+         throw new Error(`No recipe found with ${name}`)
+      }
+      } catch(error){
+         console.log('Error in getRecipesByName controller');
+      }
+}
+
+
+
+
 //OBTENER TODAS LAS DIETS
 
 // const getAllDiets = async() => {
@@ -75,5 +107,6 @@ const getAllInfo = async () => {
 module.exports = {
    getAllApi,
    getDbInfo,
-   getAllInfo
+   getAllInfo,
+   getRecipesByName
 }

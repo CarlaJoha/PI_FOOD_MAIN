@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
 
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
 
     instructions: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
-      allowNull: true,
+      allowNull: false,
     },
 
     createdInDb: {//esta me sirve para la creación de recetas, que estarán en DB
