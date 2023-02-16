@@ -1,12 +1,23 @@
+const { Router } = require('express');
 // const { Diet } = require('../db');
-// const { Router } = require('express');
-// const { getAllApi } = require('../controllers/getAllInf');
+const { getAllDiets } = require('../controllers/getlAllDiets');
 
-// const router = Router();
 
-// //Obtener todas aquellas recetas que coincidan por el NAME, recibido por query( /recipes/name?="...")
-// router.get('/recipes', async (req, res) => {
- 
-// });
+const router = Router();
+//Traigo solo las DIETS
+router.get('/', async (req, res) => {
+   const { diets } = req.body;
+   console.log(diets)
+   try{
+    
+        let response = await getAllDiets(diets);
+        return res.status(200).json(response)
+   }
+      catch(error){
+      return res.status(404).json({error: error.message});
+   }
+   
+});
 
-// module.exports = router;
+
+module.exports = router;

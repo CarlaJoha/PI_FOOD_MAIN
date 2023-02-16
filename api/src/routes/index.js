@@ -10,7 +10,7 @@ const router = Router();
 // Ejemplo: routes.use('/auth', authRouter);
 
 router.use('/recipes', recipes); //todas las rutas de recipes
-// router.use('/diets', diets);//todas las rutas de diets
+router.use('/diets', diets);//todas las rutas de diets
 
 
 

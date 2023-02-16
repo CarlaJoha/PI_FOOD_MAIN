@@ -19,6 +19,7 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
+      defaultValue: '../../ratuille.jpg',
       allowNull: true,//NO es obligatoria - EST
     },
 

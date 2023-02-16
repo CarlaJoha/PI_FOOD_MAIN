@@ -19,10 +19,10 @@ const getAllApi = async() => {
          image: element.image,
          healthScore: element.healthScore,
          summary: element.summary,
-         // diets: element.diets.map((diet) => diet),
-         diets: element.diets,
+         diets: element.diets.map((diet) => diet),
+         // diets: element.diets,
          instructions: element.analyzedInstructions.map((steps) => steps)
-         }
+      }
    })
    return recipesApi;
    
@@ -63,50 +63,9 @@ const getAllInfo = async () => {
    }
 };
 
-//OBTENER LAS RECETAS POR NOMBRE
-const getRecipesByName  = async (name) => {
-   try{
-   let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
-   const search = response.data.results.filter((recipe) => recipe.title.toLowerCase().includes(name.toLowerCase()) === true)
-   if(search.length > 0){
-      
-      let recipesMatchName = search.map((element) => {
-         return {
-            id: element.id,
-            name: element.title,
-            image: element.image,
-            healthScore: element.healthScore,
-            summary: element.summary,
-            diets: element.diets.map((diet) => diet),
-            instructions: element.analyzedInstructions.map((steps) => steps)
-            }
-      })
-      return recipesMatchName;
-      } else{
-         throw new Error(`No recipe found with ${name}`)
-      }
-      } catch(error){
-         console.log('Error in getRecipesByName controller');
-      }
-}
-
-
-
-
-//OBTENER TODAS LAS DIETS
-
-// const getAllDiets = async() => {
-//    try{
-//       const 
-//    } catch(error){
-
-//    }
-// }
-
-
+//........................................................
 module.exports = {
    getAllApi,
    getDbInfo,
-   getAllInfo,
-   getRecipesByName
+   getAllInfo
 }
