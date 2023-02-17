@@ -1,5 +1,5 @@
-require('dotenv').config();// me traigo lo que está en .env, la info ahora la maneja process.env
-const { API_KEY } = process.env;
+// require('dotenv').config();// me traigo lo que está en .env, la info ahora la maneja process.env
+// const { API_KEY } = process.env;
 const axios = require('axios');
 
 //OBTENER TODAS LAS DIETS
@@ -9,12 +9,15 @@ const axios = require('axios');
 //https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5
 const getAllDiets = async() => { 
    try{
-     const apiDiets = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+     const apiDiets = await axios.get(`https://apimocha.com/n.s.recipes/allrecipes`)
  
    let dietsApi = apiDiets.data.results.map((element) => {
       return {
          diets: element.diets.map((diet) => diet),
          // diets: element.diets,
+         vegetarian: element.vegetarian,
+         vegan: element.vegan,
+         glutenFree : element.glutenFree
       }
    })
    return dietsApi;
