@@ -7,7 +7,7 @@ const router = Router();
 //Traigo solo las DIETS
 router.get('/', async (req, res) => {
    const { diets } = req.body;
-   console.log(diets)
+
    try{
     
         let response = await getAllDiets(diets);
