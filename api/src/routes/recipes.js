@@ -3,7 +3,7 @@ const { getAllInfo } = require('../controllers/controllers');
 const { getRecipesByName } = require('../controllers/getRecipesByName')
 const { getRecipesById } = require('../controllers/getRecipesById')
 const { postRecipes } = require('../controllers/postRecipe-Diet');
-const deleteRecipe = require('../controllers/deleteRecipesDB');
+// const deleteRecipe = require('../controllers/deleteRecipesDB');
 
 const router = Router();
 
@@ -59,7 +59,7 @@ router.post('/', async(req, res) => {
       return res.status(200).json( { "message" : "New recipe created successfully" } )
    
    } catch (error) {
-       res.status(404).send({"error": "sorry, the recipe was not created"})  
+       res.status(404).send({error: error.message})  
    }
 });
 
@@ -67,7 +67,7 @@ router.post('/', async(req, res) => {
 
 //ELIMINAR UNA RECETA DE LA BASE DE DATOS
 
-router.delete('/:id', deleteRecipe);
+// router.delete('/:id', deleteRecipe);
 
 //........................................................................
 module.exports = router;

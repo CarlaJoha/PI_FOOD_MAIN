@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: false
     },
 
     image: {
@@ -39,6 +39,7 @@ module.exports = (sequelize) => {
     },
 
     createdInDb: {//esta me sirve para la creación de recetas, que estarán en DB
+      // IDBTransaction: ,
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: true

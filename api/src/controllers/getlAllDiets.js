@@ -11,6 +11,7 @@ const { Diet } = require('../db');
 const getAllDiets = async() => { 
     
    const dietsDB = await Diet.findAll()
+   try{
     if(dietsDB.length){
       return dietsDB
     }
@@ -19,16 +20,13 @@ const getAllDiets = async() => {
 
       const info = await apiDiets.data.results.map((element) => {
          return {
+            vegetarian: element[0],
             diets: element.diets,
-            // diets: element.diets,
-            vegetarian: element.vegetarian,
-            vegan: element.vegan,
-            glutenFree : element.glutenFree
          }
       })
  
     
-      const filterR = info.map( (element) => element && element.diets)
+      const filterR = info.map( (element) => element && element.diets)//recorro la info
 
       const dietas = filterR.flat();
 
@@ -45,7 +43,9 @@ const getAllDiets = async() => {
    // //retorno las dietas de la db
    let totalDietsDB = await Diet.findAll();
    return totalDietsDB;
-
+   } catch(error){
+      throw new Error('Error in getAllDiets controller')
+   }
 
 };
 

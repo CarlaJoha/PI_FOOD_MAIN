@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
    const { diets } = req.body;
 
    try{
-    
         let response = await getAllDiets(diets);
         return res.status(200).json(response)
    }

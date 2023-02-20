@@ -1,17 +1,17 @@
-const { Recipe } = require('../db');
+// const { Recipe } = require('../db');
 
-module.exports = async (req, res) => {
-   try {
-      const { id } = req.params;
+// module.exports = async (req, res) => {
+//    try {
+//       const { id } = req.params;
 
-      const recipeDelete = await Recipe.findByPk(id);
+//       const recipeDelete = await Recipe.findByPk(id);
 
-      await recipeDelete.destroy();
+//       await recipeDelete.destroy();
 
-      return res.send("The recipe was successfully deleted")
+//       return res.send("The recipe was successfully deleted")
 
-   } catch(error){
+//    } catch(error){
       
-      return res.status(500).json({'error': 'error delete'})
-   }
-};
+//       return res.status(500).json({'error': 'error delete'})
+//    }
+// };
