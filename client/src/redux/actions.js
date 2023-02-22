@@ -15,7 +15,7 @@ import { GET_ALL_RECIPES } from "./actions-types"
 //1. TRAER ALL RECETAS DEL BACK(conectamos front y back)
 export const getAllRecipes = () => {
    return async (dispatch) => {
-      let infoJson = await axios.get('/recipes')
+      let infoJson = await axios.get('http://localhost:3001/recipes')
       return dispatch({ type: GET_ALL_RECIPES, payload: infoJson.data })
    }
 }

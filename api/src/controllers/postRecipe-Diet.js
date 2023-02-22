@@ -11,7 +11,7 @@ const postRecipes = async(  name, image, healthScore, summary, instructions  ) =
          instructions,
    });
       await newRecipe.save();
-
+      return newRecipe;
    }
     catch (error) {
       throw new Error('We could not create the recipe, please try again')

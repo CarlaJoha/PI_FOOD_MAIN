@@ -1,0 +1,33 @@
+.container{
+   height: 100vh;
+   margin: 0;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-image: url('../../assets/image/Landing1.jpg');
+   background-size: cover;
+   background-attachment: scroll;
+   text-align: center;
+}
+
+h1{
+   color: white;
+   font-size: 50px;
+}
+
+.button{
+   width: 150px;
+   height: 35px;
+   padding: .3em 0;
+   border-color: brown;
+   background: rgb(203, 58, 5);
+   font-size: .8rem;
+   font-weight: bold;
+   border-radius: 1em;
+   cursor: pointer;
+}
+.button:hover{
+   background-color: beige;
+}

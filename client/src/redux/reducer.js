@@ -15,13 +15,13 @@ const initialState = {
    recipe: []
 }
 
-const reducer = (state = initialState, actions) => {//const { type, payload } = actions;
-   switch (actions.type) {
+const reducer = (state = initialState, action) => {//const { type, payload } = action;
+   switch (action.type) {
       case GET_ALL_RECIPES:
          return{
             ...state,
-            allRecipes: actions.payload,//a mi estado allRecipes todo lo que mande la action de allRecipes
-            recipe: actions.payload
+            allRecipes: action.payload,//a mi estado allRecipes todo lo que mande la action de allRecipes
+            recipe: action.payload
          }
      
       default:

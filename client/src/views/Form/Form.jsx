@@ -1,6 +1,8 @@
+import style from './Form.module.css';
+
 const Form = () => {
    return (
-      <div> 
+      <div className={style.container}> 
          <h1>FORM</h1>
       </div>
    )

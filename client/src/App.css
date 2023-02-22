@@ -1,0 +1,11 @@
+.App {
+   height: 100vh;
+   margin: 0;
+   text-align: center;
+   background-attachment: scroll;
+   background-repeat: repeat;
+   background-size: cover;
+   background-position: center;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}

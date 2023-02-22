@@ -1,10 +1,21 @@
 import React from 'react';
+import style from './Home.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllRecipes } from '../../redux/actions';
 
 const Home = () => {
 
+   const dispatch = useDispatch();
+   const recipes = useSelector((state) => state.allRecipes )
+   
+   useEffect(() => {
+      dispatch(getAllRecipes())
+   }, [dispatch, recipes])
+
    return(
-      <div>
-         <p>HOME</p>
+      <div className={style.container}>
+         <h1>HOME</h1>
       </div>
    )
 

@@ -26,7 +26,7 @@ const getAllDiets = async() => {
       })
  
     
-      const filterR = info.map( (element) => element && element.diets)//recorro la info
+      const filterR = info.map( (element) => element && element.diets)
 
       const dietas = filterR.flat();
 
@@ -35,13 +35,14 @@ const getAllDiets = async() => {
       const arreglo = Array.from(setdietas) ;  
 
 
-   // //comparo el array de tipos de dietas con el modelo, si está, no pasa nada, si no, la crea en la bd
+   
       arreglo.forEach((diet) => { Diet.findOrCreate({
          where: { name: diet }
          })
       });
-   // //retorno las dietas de la db
+   //retorno las dietas de la db
    let totalDietsDB = await Diet.findAll();
+
    return totalDietsDB;
    } catch(error){
       throw new Error('Error in getAllDiets controller')

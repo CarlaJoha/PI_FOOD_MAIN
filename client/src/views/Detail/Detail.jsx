@@ -1,7 +1,10 @@
+import style from './Detail.module.css';
+
+
 const Detail = () => {
    return(
       <div>
-         <h1>DETAIL</h1>
+         <h1 className={style.h1}>DETAIL</h1>
       </div>
    )
 }
