@@ -1,9 +1,15 @@
-import './App.css';
+import { Landing, Home, Detail, Form } from './views/index';
+
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Food</h1>
+      <h1>Hola</h1>
+      <Landing/>
+      <Home/>
+      <Detail/>
+      <Form/>
     </div>
   );
 }
