@@ -12,7 +12,7 @@ import { GET_ALL_RECIPES } from "./actions-types"
 
 const initialState = {
    allRecipes : [],
-   recipe: []
+   recipeDetail: {}
 }
 
 const reducer = (state = initialState, action) => {//const { type, payload } = action;
@@ -20,8 +20,8 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
       case GET_ALL_RECIPES:
          return{
             ...state,
-            allRecipes: action.payload,//a mi estado allRecipes todo lo que mande la action de allRecipes
-            recipe: action.payload
+            allRecipes: action.payload,//acá guardo todas las recetas de la API
+            recipeDetail: action.payload
          }
      
       default:

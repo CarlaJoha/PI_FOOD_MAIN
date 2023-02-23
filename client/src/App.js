@@ -1,6 +1,6 @@
 import { Landing, Home, Detail, Form } from './views/index';
-import { NavBar } from './components/index'
-import { Route, useLocation } from 'react-router-dom';
+import  NavBar  from './components/NavBar/NavBar';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
@@ -10,11 +10,12 @@ function App() {
       {
         location.pathname !== "/" && location.pathname !== '/detail' ? <NavBar/> : null
       }
+      <Switch>
         <Route exact path='/' component={Landing}/>
         <Route exact path='/recipes' component={Home}/>
         <Route exact path='/detail' component={Detail}/>
         <Route exact path='/form' component={Form}/>
-   
+      </Switch>
      </div>
   );
 }

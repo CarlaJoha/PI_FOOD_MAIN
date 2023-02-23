@@ -15,18 +15,18 @@ import { GET_ALL_RECIPES } from "./actions-types"
 //1. TRAER ALL RECETAS DEL BACK(conectamos front y back)
 export const getAllRecipes = () => {
    return async (dispatch) => {
-      let infoJson = await axios.get('http://localhost:3001/recipes')
-      return dispatch({ type: GET_ALL_RECIPES, payload: infoJson.data })
+      let response = await axios.get('https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b')//'http://localhost:3001/recipes'
+      return dispatch({ type: GET_ALL_RECIPES, payload: response.data.results })
    }
 }
 
 //2. TRAER RECETAS POR SU NOMBRE
-export const getRecipesByName = () => {
+export const getRecipesByName = (name) => {
 
 }
 
 //3. TRAER RECETAS POR ID PARA EL DETAIL
-export const getRecipesDetail = () => {
+export const getRecipesDetail = (id) => {
 
 }
 
@@ -37,12 +37,12 @@ export const postRecipe = () => {
 
 //5. TRAER ALL DIETS
 export const getAllDiets = () => {
-
+   
 }
 
 //6. PAGINADO
-export const paginated = () => {
-
+export const pagination = (payload) => {
+   
 }
 
 //7. FILTRAR POR DIETS
