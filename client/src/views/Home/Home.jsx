@@ -13,7 +13,7 @@ const Home = () => {
 
    const allRecipes = useSelector( (state) => state.allRecipes );
    const recipesPerPage = useSelector( (state) => state.recipesPerPage );
-  console.log(allRecipes);
+  
    const [ currentPage, setCurrentPage ] = useState();
    
    useEffect(() => {
@@ -27,7 +27,6 @@ const Home = () => {
 
    return(
       <div className={style.container}>
-         <h1>Componente: HOME</h1>
             <RecipesContainer 
                allRecipes={currentRecipe} 
             /> 

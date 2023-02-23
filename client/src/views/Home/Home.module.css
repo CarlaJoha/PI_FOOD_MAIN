@@ -1,4 +1,12 @@
 .container{
-   border: 2px solid black;
-   background-color: rgb(205, 148, 25);
+   margin:0;
+   padding: 0;
+   /* background: linear-gradient(
+      to left,
+      rgb(205, 148, 25)) 100%,
+      brown 0%
+   ); */
+ 
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }

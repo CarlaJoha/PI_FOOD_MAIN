@@ -17,13 +17,14 @@ const RecipesContainer = () => {
 
    return(
       <div className={style.container}>
-         { recipes.map((element, index) =>{
+         { recipes.map((element) =>{
               return(
                <Card
-                  key={index}
-                  image={element.image}
-                  name={element.title}
-                  diets={element.diets}
+                  key={element?.id}
+                  id={element?.id}
+                  image={element?.image}
+                  name={element?.title}//cambiar a name
+                  diets={element?.diets}
                />
               );
          })};

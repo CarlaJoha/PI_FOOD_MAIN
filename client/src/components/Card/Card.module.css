@@ -1,13 +1,27 @@
 .container{
-   border: 1px solid green;
+   border: 3px solid green;
    width: 380px;
-   height: 400px;
+   height: 450px;
    display: flex;
    flex-direction: column;
    gap: .5em;
+   margin-bottom: 2em;
+   cursor: pointer;
+   backface-visibility: visible;
+
 }
 
 .image{
+   width: 100%;
    display: flex;
    align-items: center;
+   border-radius: 5%;
+   overflow: hidden;
+   padding: 0%;
+}
+.container.informationCard{
+  align-items: center;
+}
+.name{
+   padding: 0;
 }

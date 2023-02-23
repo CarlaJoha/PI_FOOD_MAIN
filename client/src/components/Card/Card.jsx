@@ -10,10 +10,12 @@ const Card = ({ image, name, diets, id}) => {
          <div>
             <img className={style.image} src={image} alt={name} />
          </div>
-         <div>
-            <h2>{name}</h2>
+         <div className={style.informationCard}>
+            <h2 className={style.name}>{name}</h2>
             <h3>{diets}</h3>
-            <Link to={`/detail/${id}`}>Ver más</Link>
+            <div>
+               <Link to={`/detail/${id}`}>Ver más</Link>
+            </div>
          </div>
       </div>
    )

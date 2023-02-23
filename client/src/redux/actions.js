@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { GET_ALL_RECIPES } from "./actions-types"
+import { CLEAR_DETAIL, GET_ALL_RECIPES } from "./actions-types"
 // import { GET_BY_NAME } from "./actions-types"
-// import { GET_DETAIL } from "./actions-types"
+import { GET_DETAIL } from "./actions-types"
 // import { POST_RECIPE } from "./actions-types"
 // import { GET_ALL_DIETS } from "./actions-types"
 // import { PAGINATED } from "./actions-types"
@@ -16,7 +16,7 @@ import { GET_ALL_RECIPES } from "./actions-types"
 export const getAllRecipes = () => {
    return async (dispatch) => {
       let response = await axios.get('https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b')//'http://localhost:3001/recipes'
-      return dispatch({ type: GET_ALL_RECIPES, payload: response.data.results })
+      return dispatch({ type: GET_ALL_RECIPES, payload: response.data.results })//revisar esto cuando me traiga la el back
    }
 }
 
@@ -27,7 +27,10 @@ export const getRecipesByName = (name) => {
 
 //3. TRAER RECETAS POR ID PARA EL DETAIL
 export const getRecipesDetail = (id) => {
-
+   return async (dispatch) => {
+      let response = await axios.get(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b/${id}`)///detail/${id}   
+      return dispatch({ type: GET_DETAIL, payload: response.data.results })
+   }
 }
 
 //4. POST RECETA DESDE LOS DATOS DEL PAYLOAD
@@ -66,6 +69,9 @@ export const clearRecipes = () => {
 }
 
 //11. LIMPIAR DETAIL
-export const clearDetail = () => {
-
-}
+export const clearDetail = (payload) => {
+   return {
+      type: CLEAR_DETAIL,
+      payload
+   }
+};
