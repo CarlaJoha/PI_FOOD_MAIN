@@ -2,15 +2,16 @@ require('dotenv').config();// me traigo lo que está en .env, la info ahora la m
 const { API_KEY } = process.env;
 const axios = require('axios');
 const { Recipe } = require('../db')
+const { Op } = require('sequelize')
 
 //OBTENER LAS RECETAS POR NOMBRE
 const getRecipesByName  = async (name) => {
  
    let findNameDB = await Recipe.findAll({
-      where : { name: name.toLowerCase()}
+      where : { name: { [Op.iLike]:`%${name}%`} }
    });
 
-   let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+   let response = await axios(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b`)
    
    const search = response.data.results.filter((recipe) => recipe.title.toLowerCase().includes(name.toLowerCase()) === true)
    

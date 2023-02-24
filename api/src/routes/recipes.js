@@ -3,6 +3,7 @@ const { getAllInfo } = require('../controllers/controllers');
 const { getRecipesByName } = require('../controllers/getRecipesByName')
 const { getRecipesById } = require('../controllers/getRecipesById')
 const { postRecipes } = require('../controllers/postRecipe-Diet');
+const { Diet } = require("../db")
 // const deleteRecipe = require('../controllers/deleteRecipesDB');
 
 const router = Router();
@@ -48,15 +49,24 @@ router.get('/:id', async(req, res) => {
 router.post('/', async(req, res) => {
    const { name, image, healthScore, summary, instructions, diets } = req.body;
    try {
-     let response = await postRecipes( 
+      if(name && image && healthScore && summary && instructions && diets){
+      
+      let response = await postRecipes( 
          name.toLowerCase(), 
          image, 
          healthScore, 
          summary, 
          instructions, 
-         diets 
+         diets
       )
-      return res.status(200).json( { "message" : "New recipe created successfully" } )
+      let dietsDB = await Diet.findAll({
+         where: { name: diets}
+      })
+      response.addDiet(dietsDB)
+      res.status(200).json( { "message" : "New recipe created successfully" } )
+   } else {
+      return "All fields are required"
+   }
    
    } catch (error) {
        res.status(404).send({error: error.message})  

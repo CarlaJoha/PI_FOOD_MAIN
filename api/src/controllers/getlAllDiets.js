@@ -16,7 +16,7 @@ const getAllDiets = async() => {
       return dietsDB
     }
   
-     const apiDiets = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+     const apiDiets = await axios.get(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b`)
 
       const info = await apiDiets.data.results.map((element) => {
          return {

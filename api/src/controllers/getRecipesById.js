@@ -17,12 +17,12 @@ const getRecipesById = async(id) => {
 
    } else {
 
-     const apiRecipesId = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
- 
+     const apiRecipesId = await axios.get(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b/recipes/${id}`);
      let search = apiRecipesId.data.results.find((element) => element.id === Number(id));
     
      if(search){
-      
+      const instructionsSteps = []
+      search.analyzedInstructions.map((el) => el.steps.map((elem) => instructionsSteps.push(elem.step)) )
       let recipesId = {
          
             id: search.id,
@@ -31,8 +31,8 @@ const getRecipesById = async(id) => {
             healthScore: search.healthScore,
             summary: search.summary,
             // diets: element.diets.map((diet) => diet),
-            // diets: element.diets,
-            instructions: search.analyzedInstructions.map((steps) => steps)
+            diets: search.diets,
+            instructions: instructionsSteps
       }
       return recipesId;
 

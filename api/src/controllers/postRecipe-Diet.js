@@ -1,16 +1,20 @@
 const { Recipe } = require('../db')
 
 
-const postRecipes = async(  name, image, healthScore, summary, instructions  ) => {
+const postRecipes = async(  name, image, healthScore, summary, instructions, diets  ) => {
    try {
+     
+
      let newRecipe = await Recipe.create({
          name,
          summary,
          image,
          healthScore,
+         diets: [],
          instructions,
    });
       await newRecipe.save();
+      
       return newRecipe;
    }
     catch (error) {
