@@ -1,4 +1,4 @@
-import { Landing, Home, Detail, Form } from './views/index';
+import { Landing, Home, Detail, Form, NotFound } from './views/index';
 import  NavBar  from './components/NavBar/NavBar';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ function App() {
         <Route exact path='/recipes' component={Home}/>
         <Route exact path='/detail/:id' component={Detail}/>
         <Route exact path='/form' component={Form}/>
+        <Route path="*" component={NotFound}></Route>
       </Switch>
      </div>
   );

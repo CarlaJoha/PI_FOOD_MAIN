@@ -11,7 +11,8 @@ const RecipesContainer = () => {
    const recipes = useSelector((state) => state.allRecipes)
   
    useEffect(()=>{
-      dispatch(getAllRecipes())   
+      dispatch(getAllRecipes()) 
+      // return () => dispatch(clearRecipes())  
    }, [dispatch])
 
 
@@ -23,7 +24,7 @@ const RecipesContainer = () => {
                   key={element?.id}
                   id={element?.id}
                   image={element?.image}
-                  name={element?.title}//cambiar a name
+                  name={element?.name}//cambiar a name
                   diets={element?.diets}
                />
               );
