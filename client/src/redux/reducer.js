@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES } from "./actions-types"
+import { GET_ALL_RECIPES, PAGINATION } from "./actions-types"
 import { GET_DETAIL } from "./actions-types"
 import { CLEAR_RECIPES } from "./actions-types"
 import { CLEAR_DETAIL } from "./actions-types"
@@ -12,7 +12,10 @@ import { POST_RECIPE } from "./actions-types"
 
 const initialState = {
    allRecipes : [],
-   recipeDetail: {}
+   recipeDetail: {},
+
+   currentPage: 1,
+   recipesPerPage: 9
 }
 
 const reducer = (state = initialState, action) => {//const { type, payload } = action;
@@ -41,6 +44,15 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
       return{
          ...state,
          allRecipes:[]
+      }
+      case PAGINATION:
+      return {
+         ...state,
+         currentPage: Number(action.payload) ? 
+         parseInt(action.payload) : 
+         action.payload === 'Next' ? 
+         (parseInt(state.currentPage + 1)) : 
+         (parseInt(state.currentPage -1))
       }
       default:
          return {...state}

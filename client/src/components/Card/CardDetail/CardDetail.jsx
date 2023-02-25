@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import style from './CardDetail.module.css'
 
-const CardDetail = ({ image, name, diets, summary, healtScore, instructions}) => {
+const CardDetail = () => {
 
    const dispatch = useDispatch();
    const { id } = useParams();
@@ -19,16 +19,15 @@ console.log(recipe);
    return(
       
       <div className={style.container}>
-      <h1>CardDetail</h1>
-         <h2 className={style.name}>{recipe.name}</h2>
+         <h1 className={style.title}>{recipe.name}</h1>
          <img className={style.image} src={recipe.image} alt={recipe.name} />
+         <h2>Diets: </h2>
          <h3>{recipe.diets}</h3>
+         <h2>Summary: </h2>
          <span>{recipe.summary}</span>
+         <h2>Steps by Steps: </h2>
          <p>{recipe.instructions}</p>
-       
-           
-     
-   </div>
+      </div>
    )
  
 }

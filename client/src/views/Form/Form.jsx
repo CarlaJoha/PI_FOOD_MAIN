@@ -23,61 +23,61 @@ const Form = () => {
    return(
       <form className={style.container}>
 
-         <label htmlFor="title">Title recipe:</label>
+         <label className={style.label} htmlFor="title">Title recipe:</label>
          <input 
             type="text" 
             name="title"
             autoComplete="off"
             placeholder="Recipe Title"
-            className={style.title}
+            className={style.input}
             maxLength={50}
 
          />
-
-         <label htmlFor="summary">Summary:</label>
-         <textarea 
-            type="text" 
-            name="summary"
-            placeholder='Summary Recipe'
-            className={style.summary}
-            autoComplete="off"
-         >
-         </textarea>
-
-         <label htmlFor="healthscore">Health Score:</label>
+         <label className={style.label} htmlFor="healthscore">Health Score:</label>
          <input 
             type="number" 
             name="healthScore"
             placeholder='10'
-            className={style.healthScore}
+            className={style.healthscore}
          />
 
-         <label htmlFor="instructions">Step by Step:</label>
+         <label className={style.label} htmlFor="summary">Summary:</label>
+         <textarea 
+            type="text" 
+            name="summary"
+            placeholder='Summary Recipe'
+            className={style.text}
+            autoComplete="off"
+         >
+         </textarea>
+
+
+         <label className={style.label} htmlFor="instructions">Step by Step:</label>
          <textarea 
             type="text" 
             name="instructions"
-            className={style.summary}
+            className={style.text}
             placeholder='Step-by-step explanation to make the recipe.'
          >
          </textarea>
 
-         <label htmlFor="url">Image:</label>
+         <label className={style.label} htmlFor="url">Image:</label>
          <input 
             type="url" 
             name="image"
             placeholder="image url"
-            className={style.image}
+            className={style.input}
             autoComplete="off"
          />
          
-         <label htmlFor="diets">Diets Types:</label>
+         <label className={style.label} htmlFor="diets">Diets Types:</label>
          <input 
             type="checkbox" 
             name="image"
-            className={style.image}
+            className={style.checkbox}
             autoComplete="off"
          />
-         <button>CREAR RECETA</button>
+         <button className={style.button}>CREAR RECETA</button>
 
       </form>
    )

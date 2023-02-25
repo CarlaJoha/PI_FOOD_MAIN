@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { CLEAR_DETAIL, GET_ALL_RECIPES } from "./actions-types"
+import { CLEAR_DETAIL, GET_ALL_RECIPES, PAGINATION } from "./actions-types"
 import { CLEAR_RECIPES } from "./actions-types"
 import { GET_DETAIL } from "./actions-types"
 import { POST_RECIPE } from "./actions-types"
 // import { GET_BY_NAME } from "./actions-types"
 // import { GET_ALL_DIETS } from "./actions-types"
-// import { PAGINATED } from "./actions-types"
+// import { PAGINATION } from "./actions-types"
 // import { FILTER_DIETS } from "./actions-types"
 // import { ORDER_BY_NAME } from "./actions-types"
 // import { ORDER_SCORE } from "./actions-types"
@@ -68,7 +68,7 @@ export const getAllDiets = () => {
 
 //6. PAGINADO
 export const pagination = (payload) => {
-   
+   return { type: PAGINATION, payload }
 }
 
 //7. FILTRAR POR DIETS

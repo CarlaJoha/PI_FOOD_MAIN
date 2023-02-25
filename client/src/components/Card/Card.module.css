@@ -1,5 +1,6 @@
 .container{
-   border: 3px solid green;
+   border: 3px solid rgb(128, 77, 0);
+   border-radius: 10px;
    width: 380px;
    height: 450px;
    display: flex;
@@ -8,19 +9,21 @@
    margin-bottom: 2em;
    cursor: pointer;
    backface-visibility: visible;
+   background-color: whitesmoke;
 
 }
 
 .image{
    width: 100%;
+   border-radius: 4px;
    display: flex;
    align-items: center;
-   border-radius: 5%;
    overflow: hidden;
    padding: 0%;
 }
 .container.informationCard{
   align-items: center;
+
 }
 .name{
    padding: 0;

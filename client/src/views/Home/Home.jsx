@@ -4,36 +4,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllRecipes } from '../../redux/actions';
 import  RecipesContainer  from '../../components/RecipesContainer/RecipesContainer';
-// import Paginated from '../../components/Paginated/Paginated';
+import Paginated from '../../components/Paginated/Paginated'
 
 const Home = () => {
    
    const dispatch = useDispatch();
 
    const allRecipes = useSelector( (state) => state.allRecipes );
-   // const recipesPerPage = useSelector( (state) => state.recipesPerPage );
-  
-   // const [ currentPage, setCurrentPage ] = useState();
+   const recipesPerPage = useSelector( (state) => state.recipesPerPage )
+   const currentPage = useSelector( (state) => state.currentPage  )
+ 
+   const indexLastRecipe = currentPage * recipesPerPage;//9
+   const indexFirstRecipe = indexLastRecipe - recipesPerPage; //0
+   const currentRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe);
    
+ 
    useEffect(() => {
      dispatch(getAllRecipes())
   }, [dispatch, allRecipes]);
 
- //PAGINADO:
-//  const lastRecipeIndex = currentPage * recipesPerPage;
-//  const firstRecipeIndex = lastRecipeIndex - recipesPerPage;
-//  const currentRecipe = allRecipes.slice(firstRecipeIndex, lastRecipeIndex)
-
    return(
       <div className={style.container}>
-            <RecipesContainer         
-            /> 
-            {/* <Paginated 
-               totalRecipes={allRecipes.length} 
-               recipesPerPage={recipesPerPage}
-               setCurrentPage={setCurrentPage}
-               currentPage={currentPage}
-            />      */}
+         <Paginated/>        
+         
+         <RecipesContainer
+            currentRecipes={currentRecipes}
+         />
       </div>
    )
 

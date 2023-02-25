@@ -7,16 +7,15 @@ const Card = ({ image, name, diets, id}) => {
 
    return(
       <div className={style.container}>
-         <div>
-            <img className={style.image} src={image} alt={name} />
-         </div>
-         <div className={style.informationCard}>
-            <h2 className={style.name}>{name}</h2>
-            <h3>{diets}</h3>
+         <Link to={`/detail/${id}`}>
             <div>
-               <Link to={`/detail/${id}`}>Ver más</Link>
+               <img className={style.image} src={image} alt={name} />
             </div>
-         </div>
+            <div className={style.informationCard}>
+               <h2 className={style.name}>{name}</h2>
+               <h3>{diets}</h3>
+            </div>
+         </Link>
       </div>
    )
 
