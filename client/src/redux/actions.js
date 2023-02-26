@@ -64,7 +64,7 @@ export const postRecipe = (payload ) => {
 export const getAllDiets = () => {
    return async (dispatch) => {
       try{
-         let infoDiets = await axios.post('http://localhost:3001/diets')
+         let infoDiets = await axios.get('http://localhost:3001/diets')
          return dispatch({ type: GET_ALL_DIETS, payload: infoDiets.data })//QUITAR .results cuando venga de la Api
       } catch(error){
          console.log("Error en getAllDiets action")

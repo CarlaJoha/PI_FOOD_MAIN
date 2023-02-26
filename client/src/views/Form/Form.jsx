@@ -29,7 +29,7 @@ const Form = () => {
             name="title"
             autoComplete="off"
             placeholder="Recipe Title"
-            className={style.input}
+            className={style.inputTitle}
             maxLength={50}
 
          />
@@ -38,7 +38,7 @@ const Form = () => {
             type="number" 
             name="healthScore"
             placeholder='10'
-            className={style.healthscore}
+            className={style.inputHealthscore}
          />
 
          <label className={style.label} htmlFor="summary">Summary:</label>
@@ -46,7 +46,7 @@ const Form = () => {
             type="text" 
             name="summary"
             placeholder='Summary Recipe'
-            className={style.text}
+            className={style.textSummary}
             autoComplete="off"
          >
          </textarea>
@@ -56,7 +56,7 @@ const Form = () => {
          <textarea 
             type="text" 
             name="instructions"
-            className={style.text}
+            className={style.textAreaInstructions}
             placeholder='Step-by-step explanation to make the recipe.'
          >
          </textarea>
@@ -66,18 +66,28 @@ const Form = () => {
             type="url" 
             name="image"
             placeholder="image url"
-            className={style.input}
+            className={style.inputImage}
             autoComplete="off"
          />
          
          <label className={style.label} htmlFor="diets">Diets Types:</label>
          <input 
             type="checkbox" 
-            name="image"
-            className={style.checkbox}
+            name="diets"
+            className={style.checkboxDiets}
             autoComplete="off"
          />
-         <button className={style.button}>CREAR RECETA</button>
+
+          <label className={style.label} htmlFor="addDiet">Add Diet:</label>
+         <input 
+            type="text" 
+            name="addDiets"
+            placeholder="added a diet"
+            className={style.AddDiet}
+            autoComplete="off"
+         />
+         
+         <button className={style.button}>CREATE RECIPE</button>
 
       </form>
    )

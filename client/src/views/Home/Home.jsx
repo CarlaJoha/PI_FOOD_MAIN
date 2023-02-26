@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { getAllRecipes } from '../../redux/actions';
 import  RecipesContainer  from '../../components/RecipesContainer/RecipesContainer';
 import Paginated from '../../components/Paginated/Paginated'
+import Filter from '../../components/Filter/Filter'
 
 const Home = () => {
    
@@ -22,7 +23,7 @@ const Home = () => {
  
    useEffect(() => {
      dispatch(getAllRecipes())
-  }, [dispatch, allRecipes]);
+  }, [dispatch]);
 
   const handleClick = (event) => {
    event.preventDefault();
@@ -31,12 +32,11 @@ const Home = () => {
 
    return(
       <div className={style.container}>
-         <button 
+         <button className={style.buttonRefresh}            
             onClick={(event) => { handleClick(event) } }>REFRESH
          </button>
-        
+         <Filter />
          <Paginated/>        
-         
          <RecipesContainer
             currentRecipes={currentRecipes}
          />

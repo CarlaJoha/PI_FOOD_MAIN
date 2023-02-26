@@ -15,6 +15,7 @@
    --size: 32px;
    --margin: 6px;
    margin: 0 var(--margin);
+   border-color: #74501b;
    border-radius: 6px;
    background: #b69754;
    max-width: auto;

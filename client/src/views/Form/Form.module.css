@@ -8,6 +8,8 @@
    background-image: linear-gradient(-225deg, #b26845 0%, #ac6b16 52%, #d6a955 100%);
    min-height: 100%;
    padding-bottom: 5rem;
+   overflow: hidden;
+   box-shadow: 1px 1px 20px hsl(37, 97%, 15%);
 }
 
 .label{

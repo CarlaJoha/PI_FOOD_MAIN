@@ -1,8 +1,8 @@
 .container{
-   border: 3px solid rgb(128, 77, 0);
+ 
    border-radius: 10px;
-   width: 380px;
-   height: 450px;
+   width: 30%;
+   height: 60%;
    display: flex;
    flex-direction: column;
    gap: .5em;
@@ -10,6 +10,8 @@
    cursor: pointer;
    backface-visibility: visible;
    background-color: whitesmoke;
+   overflow: hidden;
+   box-shadow: 1px 1px 20px hsl(37, 97%, 15%);
 
 }
 
@@ -23,8 +25,27 @@
 }
 .informationCard{
   align-items: center;
+  position:relative;
+  padding: 0;
 }
 
 .name{
-   padding: 0;
+   padding: .5em;
+}
+.containerDiets{
+   display: flex;
+   flex-direction: row;
+ 
+}
+.dietsTitle{
+   /* border: 1px solid red; */
+   margin: 1em;
+   padding: .8em;
+}
+.diets{
+   /* border: 1px solid green; */
+   list-style-type: none;
+   width: 50%;
+   padding: 0%;
+   text-align: left;
 }

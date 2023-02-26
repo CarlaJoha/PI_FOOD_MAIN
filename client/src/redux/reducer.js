@@ -1,10 +1,9 @@
-import { GET_ALL_DIETS, GET_ALL_RECIPES, PAGINATION } from "./actions-types"
+import { FILTER_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, PAGINATION } from "./actions-types"
 import { GET_DETAIL } from "./actions-types"
 import { CLEAR_RECIPES } from "./actions-types"
 import { CLEAR_DETAIL } from "./actions-types"
 import { POST_RECIPE } from "./actions-types"
 // import { GET_BY_NAME } from "./actions-types"
-// import { FILTER_DIETS } from "./actions-types"
 // import { ORDER_BY_NAME } from "./actions-types"
 // import { ORDER_SCORE } from "./actions-types"
 
@@ -12,6 +11,7 @@ const initialState = {
    allRecipes : [],
    recipeDetail: {},
    allDiets:[],
+   recipesFilter: [],
    currentPage: 1,
    recipesPerPage: 9
 }
@@ -38,25 +38,33 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
             ...state,
             allDiets: action.payload,
       }
+      case FILTER_DIETS:
+         const filterCardsByDiets = action.payload === "All" 
+            ? state.allRecipes 
+            : state.allRecipes.filter((recipe) => recipe.diets === action.payload )
+         return{
+            ...state,
+            recipesFilter: filterCardsByDiets
+         }
       case CLEAR_DETAIL:
-      return{
-         ...state,
-         recipeDetail:[]
-      }
+         return{
+            ...state,
+            recipeDetail:[]
+         }
       case CLEAR_RECIPES:
-      return{
-         ...state,
-         allRecipes:[]
-      }
+         return{
+            ...state,
+            allRecipes:[]
+         }
       case PAGINATION:
-      return {
-         ...state,
-         currentPage: Number(action.payload) ? 
-         parseInt(action.payload) : 
-         action.payload === 'next' ? 
-         (parseInt(state.currentPage + 1)) : 
-         (parseInt(state.currentPage -1))
-      }
+         return {
+            ...state,
+            currentPage: Number(action.payload) ? 
+            parseInt(action.payload) : 
+            action.payload === 'next' ? 
+            (parseInt(state.currentPage + 1)) : 
+            (parseInt(state.currentPage -1))
+         }
       default:
          return {...state}
    }

@@ -9,3 +9,7 @@
    background-image: linear-gradient(-225deg, #643b28 0%, #ac6b16 52%, #d6a955 100%);
    text-align: center;
 }
+
+.buttonRefresh{
+   margin: 2em;
+}

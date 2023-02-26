@@ -7,15 +7,27 @@ const Card = ({ image, name, diets, id}) => {
 
    return(
       <div className={style.container}>
+
          <Link to={`/detail/${id}`}>
             <div>
                <img className={style.image} src={image} alt={name} />
             </div>
+         </Link>
+
             <div className={style.informationCard}>
                <h2 className={style.name}>{name}</h2>
-               <h3>{diets}</h3>
+               <div className={style.containerDiets}>   
+                  <h3 className={style.dietsTitle}>Diets:</h3>
+                  <ul className={style.diets}>
+                     {
+                        diets.map( (diet, index) => {
+                           return (<li key={index}>{diet}</li>)
+                        })
+                     }
+                  </ul>
+               </div>
             </div>
-         </Link>
+         
       </div>
    )
 
