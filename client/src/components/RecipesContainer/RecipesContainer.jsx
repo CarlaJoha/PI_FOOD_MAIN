@@ -10,8 +10,8 @@ const RecipesContainer = ({ currentRecipes }) => {
          { currentRecipes.map((element) =>{
               return(
                <Card
-                  key={element?.id}
                   id={element?.id}
+                  key={element?.id}
                   image={element?.image}
                   name={element?.name}//cambiar a name
                   diets={element?.diets}

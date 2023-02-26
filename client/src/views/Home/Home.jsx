@@ -11,6 +11,7 @@ const Home = () => {
    const dispatch = useDispatch();
 
    const allRecipes = useSelector( (state) => state.allRecipes );
+
    const recipesPerPage = useSelector( (state) => state.recipesPerPage )
    const currentPage = useSelector( (state) => state.currentPage  )
  
@@ -23,8 +24,17 @@ const Home = () => {
      dispatch(getAllRecipes())
   }, [dispatch, allRecipes]);
 
+  const handleClick = (event) => {
+   event.preventDefault();
+   dispatch(getAllRecipes())
+  }
+
    return(
       <div className={style.container}>
+         <button 
+            onClick={(event) => { handleClick(event) } }>REFRESH
+         </button>
+        
          <Paginated/>        
          
          <RecipesContainer

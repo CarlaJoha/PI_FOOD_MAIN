@@ -21,10 +21,10 @@
    overflow: hidden;
    padding: 0%;
 }
-.container.informationCard{
+.informationCard{
   align-items: center;
-
 }
+
 .name{
    padding: 0;
 }

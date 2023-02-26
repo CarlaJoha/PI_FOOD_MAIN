@@ -23,11 +23,11 @@ h1{
    padding: .3em 0;
    border-color: brown;
    background: rgb(203, 58, 5);
-   font-size: .8rem;
+   font-size: .9rem;
    font-weight: bold;
    border-radius: 1em;
    cursor: pointer;
 }
 .button:hover{
-   background-color: beige;
+   background-color: rgb(179, 179, 150);
 }

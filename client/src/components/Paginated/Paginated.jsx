@@ -5,7 +5,7 @@ import { pagination } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const Paginated = () => {
+const Paginated = ({ currentPage }) => {
    
    const dispatch = useDispatch();
 
@@ -24,19 +24,37 @@ const Paginated = () => {
    
    return(
       
-      <nav className={style.nav}>
+      <div className={style.nav}>
+         
+         <ul className={style.ul}>
+         {
+            pages && currentPage > 1 ?
+               <button 
+                  className="buttonPage"
+                  onClick={handlerPages}
+                  value="Previous">               
+               </button> : null
+         }
          { 
-            pages && pages.map((number) => (
-               <ul className={style.ul}>
+            pages.map((number) => (
                   <button 
-                     className={style.button} 
-                     onClick={handlerPages} 
+                     className={style.buttonPage} 
+                     onClick={handlerPages}
+                     value={number} 
                      key={number}>{number}
                   </button>
-               </ul>
          ))}
-        
-      </nav>
+          {
+            pages && currentPage < pages.length ?
+               <button 
+                  className="buttonPage"
+                  onClick={handlerPages}
+                  value="next"
+                  >Last                  
+               </button> : null
+         }
+         </ul>
+      </div>
    )
 }
 

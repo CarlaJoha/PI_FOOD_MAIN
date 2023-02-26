@@ -1,6 +1,9 @@
 .container{
-   border: 1px solid black;
+   height: 50px;
    display: flex;
    flex-direction: row;
    justify-content: space-around;
+   padding-top: 1.2em;
+   border-radius: 6px;
+   background-image: linear-gradient(-225deg, #643b288f 0%, #ac6b168a 52%, #d6a9558c 100%);
 }
