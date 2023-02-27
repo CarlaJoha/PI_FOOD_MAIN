@@ -40,9 +40,9 @@ const getDbInfo = async () => {
       include:{
          model: Diet,
          atributtes: ['name'],
-         // through: {
-         //    atributtes: [],
-         // }
+         through: {
+            atributtes: [],
+         }
       }
    })
    }catch(error){

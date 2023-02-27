@@ -34,14 +34,14 @@ module.exports = (sequelize) => {
     },
 
     instructions: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
+      type: DataTypes.ARRAY(DataTypes.JSONB),
       allowNull: false,
     },
 
     createdInDb: {//esta me sirve para la creación de recetas, que estarán en DB
       // IDBTransaction: ,
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
       defaultValue: true
     }
   },

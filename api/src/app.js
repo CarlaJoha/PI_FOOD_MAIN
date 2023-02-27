@@ -32,9 +32,5 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-server.get('/', (req, res) => {
-  res.send('Hola soy el server jejeje')
-})
-
 module.exports = server;
 //EL SERVIDOR QUE MANEJA LAS PETICIONES ENTRANTES

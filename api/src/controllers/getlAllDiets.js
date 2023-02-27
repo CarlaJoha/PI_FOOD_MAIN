@@ -20,7 +20,7 @@ const getAllDiets = async() => {
 
       const info = await apiDiets.data.results.map((element) => {
          return {
-            vegetarian: element[0],
+            vegetarian: element[0],//element[0] === true ? "vegetarian" : null;
             diets: element.diets,
          }
       })

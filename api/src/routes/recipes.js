@@ -49,7 +49,7 @@ router.get('/:id', async(req, res) => {
 router.post('/', async(req, res) => {
    const { name, image, healthScore, summary, instructions, diets } = req.body;
    try {
-      if(name && image && healthScore && summary && instructions && diets){
+      if(name && healthScore && summary && instructions && diets){
       
       let response = await postRecipes( 
          name.toLowerCase(), 
