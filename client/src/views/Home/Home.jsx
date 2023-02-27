@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './Home.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getAllRecipes } from '../../redux/actions';
+import { useEffect, useState } from 'react';
+import {  getAllRecipes } from '../../redux/actions';
 import  RecipesContainer  from '../../components/RecipesContainer/RecipesContainer';
 import Paginated from '../../components/Paginated/Paginated'
 import Filter from '../../components/Filter/Filter'
@@ -12,6 +12,8 @@ const Home = () => {
    const dispatch = useDispatch();
 
    const allRecipes = useSelector( (state) => state.allRecipes );
+   // eslint-disable-next-line no-unused-vars
+   const [ order, setOrder ] = useState('');
 
    const recipesPerPage = useSelector( (state) => state.recipesPerPage )
    const currentPage = useSelector( (state) => state.currentPage  )
@@ -19,11 +21,14 @@ const Home = () => {
    const indexLastRecipe = currentPage * recipesPerPage;//9
    const indexFirstRecipe = indexLastRecipe - recipesPerPage; //0
    const currentRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe);
-   
+
+
  
    useEffect(() => {
      dispatch(getAllRecipes())
   }, [dispatch]);
+
+
 
   const handleClick = (event) => {
    event.preventDefault();
@@ -32,14 +37,17 @@ const Home = () => {
 
    return(
       <div className={style.container}>
+         
          <button className={style.buttonRefresh}            
-            onClick={(event) => { handleClick(event) } }>REFRESH
+            onClick={(event) =>  handleClick(event)  }>REFRESH
          </button>
-         <Filter />
+
+         <Filter setOrder={setOrder} />
+
          <Paginated/>        
-         <RecipesContainer
-            currentRecipes={currentRecipes}
-         />
+
+         <RecipesContainer currentRecipes={currentRecipes} />
+
       </div>
    )
 

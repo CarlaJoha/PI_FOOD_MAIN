@@ -1,6 +1,6 @@
 import { Landing, Home, Detail, Form, NotFound } from './views/index';
 import  NavBar  from './components/NavBar/NavBar';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
@@ -16,6 +16,7 @@ function App() {
         <Route exact path='/detail/:id' component={Detail}/>
         <Route exact path='/form' component={Form}/>
         <Route path="*" component={NotFound}></Route>
+        <Redirect to="/" />
       </Switch>
      </div>
   );

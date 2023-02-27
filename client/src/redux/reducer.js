@@ -1,17 +1,19 @@
-import { FILTER_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, PAGINATION } from "./actions-types"
+import { FILTER_CREATED, FILTER_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, ORDER_BY_NAME, ORDER_SCORE, PAGINATION } from "./actions-types"
 import { GET_DETAIL } from "./actions-types"
 import { CLEAR_RECIPES } from "./actions-types"
 import { CLEAR_DETAIL } from "./actions-types"
 import { POST_RECIPE } from "./actions-types"
-// import { GET_BY_NAME } from "./actions-types"
-// import { ORDER_BY_NAME } from "./actions-types"
-// import { ORDER_SCORE } from "./actions-types"
+import { GET_BY_NAME } from "./actions-types"
+
 
 const initialState = {
    allRecipes : [],
+   recipes: [],
+
    recipeDetail: {},
+
    allDiets:[],
-   recipesFilter: [],
+
    currentPage: 1,
    recipesPerPage: 9
 }
@@ -22,6 +24,7 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
          return{
             ...state,
             allRecipes: action.payload,//acá guardo todas las recetas de la API
+            recipes: [...action.payload]
       }
       case GET_DETAIL:
          return{
@@ -31,20 +34,90 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
       case POST_RECIPE:
          return{
             ...state,
-            allRecipes: [...state.allRecipes, action.payload]
+            allRecipes: [...state.allRecipes, action.payload ]
          }
       case GET_ALL_DIETS:
          return{
             ...state,
             allDiets: action.payload,
       }
-      case FILTER_DIETS:
-         const filterCardsByDiets = action.payload === "All" 
-            ? state.allRecipes 
-            : state.allRecipes.filter((recipe) => recipe.diets === action.payload )
+      case GET_BY_NAME:
          return{
             ...state,
-            recipesFilter: filterCardsByDiets
+            allRecipes: action.payload
+         }
+
+      case FILTER_DIETS:
+         const cards = state.recipes;
+         const filterCardsByDiets = cards.filter((recipe) => !cards.some((diet)=> !recipe.diets.includes(diet)) )
+         return{
+            ...state,
+            allRecipes: filterCardsByDiets 
+         }
+
+      case FILTER_CREATED:
+         const createdFilter = action.payload === "createdInDb"
+            ? state.recipes.filter((recipe) => recipe.createdInDb)
+            : state.recipes.filter((recipe) => !recipe.createdInDb)
+         return{
+            ...state,
+            allRecipes: action.payload === 'all' 
+            ? state.recipes
+            : createdFilter
+         }
+      case ORDER_BY_NAME:
+            const orderArr = action.payload === 'A-Z'
+            ? state.allRecipes.sort((a, b) => {
+               if(a.name < b.name){
+                  return 1;
+               }
+               if(b.name < a.name){
+                  return -1;
+               } else {
+                  return 0
+               }
+            })
+               : state.allRecipes.sort((a, b) => {
+               if(a.name < b.name){
+                  return -1;
+               }
+               if(b.name < a.name){
+                  return 1;
+               } else {
+                  return 0
+               }
+            })
+            return{
+               ...state,
+               allRecipes: orderArr,
+               currentPage: 1
+            }
+      case ORDER_SCORE:
+         const orderScore = action.payload === 'max'
+            ? state.allRecipes.sort((a, b) => {
+               if(a.healthScore > b.healthScore){
+                  return 1;
+               }
+               if(b.healthScore > a.healthScore){
+                  return -1;
+               } else {
+                  return 0
+               }
+            })
+               : state.allRecipes.sort((a, b) => {
+               if(a.healthScore > b.healthScore){
+                  return -1;
+               }
+               if(b.healthScore > a.healthScore){
+                  return 1;
+               } else {
+                  return 0
+               }
+            })
+         return{
+            ...state,
+            allRecipes: orderScore,
+            currentPage: 1
          }
       case CLEAR_DETAIL:
          return{
@@ -59,11 +132,11 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
       case PAGINATION:
          return {
             ...state,
-            currentPage: Number(action.payload) ? 
-            parseInt(action.payload) : 
-            action.payload === 'next' ? 
-            (parseInt(state.currentPage + 1)) : 
-            (parseInt(state.currentPage -1))
+            currentPage: Number(action.payload) 
+            ? parseInt(action.payload) 
+            : action.payload === 'next' 
+            ? (parseInt(state.currentPage + 1)) 
+            : (parseInt(state.currentPage -1))
          }
       default:
          return {...state}

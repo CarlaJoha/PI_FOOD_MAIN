@@ -19,10 +19,11 @@ const Card = ({ image, name, diets, id}) => {
                <div className={style.containerDiets}>   
                   <h3 className={style.dietsTitle}>Diets:</h3>
                   <ul className={style.diets}>
-                     {
-                        diets.map( (diet, index) => {
-                           return (<li key={index}>{diet}</li>)
-                        })
+                     {diets
+                        // diets.map( (diet, index) => diet 
+                        // ? <li key={index}>{diet}</li>
+                        // : null
+                        // )
                      }
                   </ul>
                </div>

@@ -49,8 +49,7 @@ const Paginated = ({ currentPage }) => {
                <button 
                   className="buttonPage"
                   onClick={handlerPages}
-                  value="next"
-                  >Last                  
+                  value="next">                 
                </button> : null
          }
          </ul>
