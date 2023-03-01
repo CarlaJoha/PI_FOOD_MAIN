@@ -6,8 +6,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import validation from './validation';
-
-
+import { Link } from 'react-router-dom';
 
 const Form = () => {
   
@@ -16,7 +15,14 @@ const Form = () => {
    const allDiets = useSelector((state) => state.allDiets)
   
 
-   const [ errors, setErrors ] = useState()
+   const [ errors, setErrors ] = useState({
+      name: "",
+      summary: "",
+      image: "",
+      healthScore: 0,
+      diets: "",
+      instructions: "",
+   })
 
    
    //LOCAL STATE del Form
@@ -24,17 +30,17 @@ const Form = () => {
       name: "",
       summary: "",
       image: "",
-      healthScore: "",
-      diets: [],
-      instructions: [],
-      createInDb: true
+      healthScore: 1,
+      diets: "",
+      instructions:""   
    })
+   console.log(input)
    
    const handleChange = (event) => {//escucha los cambios del los inputs
-      setInput({ ...input, [event.target.name] : event.targe.value })
+      setInput({ ...input, [event.target.name] : event.target.value })
       setErrors(validation({
          ...input,
-         [event.target.name] : event.targe.value
+         [event.target.name] : event.target.value
       }))
    }
 
@@ -53,17 +59,16 @@ const Form = () => {
 
    const handleSubmit = (event) => {
       event.preventDefault();
-      console.log(input)
+      // console.log(input);
       dispatch(postRecipe(input))
       alert("Recipe created successfully")
       setInput({
          name: "",
          summary: "",
          image: "",
-         healthScore: "",
-         diets: [],
-         instructions: [],
-         createInDb: true
+         healthScore: 1,
+         instructions: "",
+         diets: "",
       })
 
       history.push('/recipes')
@@ -75,7 +80,12 @@ const Form = () => {
    
    
    return(
-      <form className={style.container}>
+      <div>
+      <form className={style.container} onSubmit={(event) => handleSubmit(event)} >
+      <h1 className={style.h1}>CREATE YOUR RECIPE</h1>
+      <button >
+            <Link to='/recipes'>BACK</Link>
+            </button>
 
          <label className={style.label} >Title recipe:</label>
          <input 
@@ -83,39 +93,39 @@ const Form = () => {
             type="text" 
             name="name"
             value={input.name}
-            autoComplete="off"
+            autoComplete="on"
             placeholder="Recipe Title"
             className={style.inputTitle}
             />
-            {/* { errors.name && <p>{errors.name}</p> } */}
+            { errors.name && <p className={style.errors}>{errors.name}</p> }
 
          <label className={style.label} >Health Score:</label>
          <input 
             onChange={handleChange}
-            type="number" 
+            type="range" 
             name="healthScore"
             value={input.healthScore}
-            placeholder='10'
+            placeholder='100'
+            min="1"
+            max="100"
             className={style.inputHealthscore}/>
-            {errors.healthScore && <p>{errors.healthScore}</p>}
+            { errors.healthScore && <p className={style.errors}>{errors.healthScore}</p> }
 
          <label className={style.label} htmlFor="summary">Summary:</label>
          <textarea 
             onChange={handleChange}
-            type="text" 
             name="summary"
             value={input.summary}
             placeholder='Summary Recipe'
             className={style.textSummary}
-            autoComplete="off"
-         >
+            autoComplete="on">
          </textarea>
+            { errors.summary && <p className={style.errors}>{errors.summary}</p> }
 
 
          <label className={style.label} >Step by Step:</label>
          <textarea 
             onChange={handleChange}
-            type="text" 
             name="instructions"
             value={input.instructions}
             className={style.textAreaInstructions}
@@ -136,18 +146,18 @@ const Form = () => {
          
         
          <label className={style.label} >Diet Select: </label>
+            <div>
                 {
                     allDiets.map((diet) => (
-                        <label  key={diet.id} >
-                            <input className={style.checkbox} 
+                        <label  key={diet.id} className={style.inputCheckbox} >
+                            <input
                                 onChange={(e) => handleCheckBox(e) } 
-                              //   checked={diets.includes(diet.name)}
                                 key={diet.id}
                                 type="checkbox"
-                                value={diet.name} />{diet.name}
+                                value={diet.id} />{diet.name}
                         </label>))
                 }
-        
+            </div>
 
          {/* <label className={style.label} htmlFor="addDiet">Add Diet:</label>
          <input 
@@ -158,9 +168,10 @@ const Form = () => {
             autoComplete="off"
          /> */}
          
-         <button className={style.button} onClick={handleSubmit} >CREATE RECIPE</button>
+         <button className={style.button} >CREATE RECIPE</button>
 
       </form>
+      </div>
    )
 }
 

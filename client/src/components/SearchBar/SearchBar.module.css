@@ -1,13 +1,25 @@
 .container{
-   border: 1px solid rgb(255, 0, 60);
+   position: absolute;
+   width: 271px; 
 }
 .input{
-   border: 1px solid black;
-   width: 300px;
-   border-radius: 2em;
-   text-align: center;
-   font-size: 1.1rem;
+   box-sizing: border-box;
+   color: #191919;
+   padding: 8px 8px 8px 25px;
+   width: 100%;
+   border-radius: 5px;
 }
+
+.icon{
+   color: #191919;
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   left: 12px;
+   top: 10%;
+   transform: translateY(-10%);
+}
+
 .button{
    cursor: pointer;
-}
+ }

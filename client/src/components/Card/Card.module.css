@@ -22,11 +22,20 @@
    align-items: center;
    overflow: hidden;
    padding: 0%;
+   height: 100%;
+   position:relative;
 }
 .informationCard{
   align-items: center;
+  height: 100%;
   position:relative;
   padding: 0;
+  
+  /* border: 1px solid red; */
+}
+.informationCard:hover{
+   background-color: rgba(255, 228, 196, 0.315);
+   opacity: 1.0 ;
 }
 
 .name{

@@ -42,7 +42,7 @@ const Home = () => {
             onClick={(event) =>  handleClick(event)  }>REFRESH
          </button>
 
-         <Filter setOrder={setOrder} />
+         <Filter />
 
          <Paginated/>        
 

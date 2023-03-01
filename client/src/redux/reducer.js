@@ -44,59 +44,69 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
       case GET_BY_NAME:
          return{
             ...state,
-            allRecipes: action.payload
+            allRecipes: action.payload,
+            currentPage: 1
          }
 
       case FILTER_DIETS:
-         const cards = state.recipes;
-         const filterCardsByDiets = cards.filter((recipe) => !cards.some((diet)=> !recipe.diets.includes(diet)) )
-         return{
+         const recipes = state.recipes;
+         if(action.payload === "all"){
+         const allDiets = recipes
+            return{
+               ...state,
+               allRecipes: allDiets 
+            }
+         } else {
+            const filterCardsByDiets = recipes.filter((recipe) => recipe.diets?.some((diet) => diet.toLowerCase() === action.payload.toLowerCase() ))
+            
+            return{
             ...state,
-            allRecipes: filterCardsByDiets 
+            allRecipes: filterCardsByDiets,
+            currentPage: 1
+            }
          }
 
       case FILTER_CREATED:
-         const createdFilter = action.payload === "createdInDb"
-            ? state.recipes.filter((recipe) => recipe.createdInDb)
-            : state.recipes.filter((recipe) => !recipe.createdInDb)
+         const recipesCopy = state.recipes;
+         const createdFilter = action.payload === "createInDb"
+            ? recipesCopy.filter((recipe) => recipe.createdInDb)
+            : recipesCopy.filter((recipe) => !recipe.createdInDb)
          return{
             ...state,
-            allRecipes: action.payload === 'all' 
-            ? state.recipes
-            : createdFilter
+            allRecipes: createdFilter
          }
+
       case ORDER_BY_NAME:
-            const orderArr = action.payload === 'A-Z'
-            ? state.allRecipes.sort((a, b) => {
-               if(a.name < b.name){
-                  return 1;
-               }
-               if(b.name < a.name){
-                  return -1;
-               } else {
-                  return 0
-               }
+         let array = action.payload === "descendente"
+          ? state.allRecipes.sort((a, b) => {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1;
+              }
+              if (b.name.toLowerCase() < a.name.toLowerCase()) {
+                return -1;
+              }
+              return 0;
             })
-               : state.allRecipes.sort((a, b) => {
-               if(a.name < b.name){
-                  return -1;
-               }
-               if(b.name < a.name){
-                  return 1;
-               } else {
-                  return 0
-               }
-            })
-            return{
-               ...state,
-               allRecipes: orderArr,
-               currentPage: 1
-            }
+          : state.allRecipes.sort((a, b) => {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return -1;
+              }
+              if (b.name.toLowerCase() < a.name.toLowerCase()) {
+                return 1;
+              }
+              return 0;
+            });
+      return {
+        ...state,
+        allRecipes: array,
+        currentPage: 1
+      };
+
       case ORDER_SCORE:
-         const orderScore = action.payload === 'max'
+         const orderScore = action.payload === 'min'
             ? state.allRecipes.sort((a, b) => {
                if(a.healthScore > b.healthScore){
-                  return 1;
+                  return 1;                  
                }
                if(b.healthScore > a.healthScore){
                   return -1;
@@ -104,7 +114,7 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
                   return 0
                }
             })
-               : state.allRecipes.sort((a, b) => {
+            : state.allRecipes.sort((a, b) => {
                if(a.healthScore > b.healthScore){
                   return -1;
                }
@@ -117,8 +127,8 @@ const reducer = (state = initialState, action) => {//const { type, payload } = a
          return{
             ...state,
             allRecipes: orderScore,
-            currentPage: 1
          }
+
       case CLEAR_DETAIL:
          return{
             ...state,

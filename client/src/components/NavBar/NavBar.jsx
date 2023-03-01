@@ -8,7 +8,7 @@ const NavBar = () => {
       <nav className={style.container}>
          <Link to="/recipes" >HOME</Link>
          <Link to="/form" >CREATE RECIPE</Link>
-         <SearchBar></SearchBar>
+         <SearchBar ></SearchBar>
       </nav>
    )
 

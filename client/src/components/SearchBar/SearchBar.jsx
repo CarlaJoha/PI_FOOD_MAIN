@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import style from './SearchBar.module.css';
 import { getRecipesByName } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const SearchBar = () => {
 
 const dispatch = useDispatch();
 const [ name, setName ] = useState("")
-
+const currentPage = useSelector((state) => state.currentPage)
 
 
 const handleInputChange = (event) => {
@@ -21,10 +21,17 @@ const handleSubmit = (event) => {
    event.preventDefault();
    dispatch(getRecipesByName(name))
    setName("");
+   dispatch(currentPage)
+   
 }
 
    return(
       <div className={style.container}>
+         <span className={style.icon} ><i className={style.icon} ></i></span>
+         <button 
+            className={style.button}
+            type="submit"
+            onClick={(event) => handleSubmit(event) } >SEARCH</button>
          
          <input 
             className={style.input} 
@@ -33,11 +40,7 @@ const handleSubmit = (event) => {
             type="search"
             onChange={(event) => handleInputChange(event)}
             />
-
-         <button 
-            className={style.button}
-            type="submit"
-            onClick={(event) => handleSubmit(event) } >SEARCH</button>
+        
 
       </div>
    )

@@ -18,14 +18,7 @@ const Card = ({ image, name, diets, id}) => {
                <h2 className={style.name}>{name}</h2>
                <div className={style.containerDiets}>   
                   <h3 className={style.dietsTitle}>Diets:</h3>
-                  <ul className={style.diets}>
-                     {diets
-                        // diets.map( (diet, index) => diet 
-                        // ? <li key={index}>{diet}</li>
-                        // : null
-                        // )
-                     }
-                  </ul>
+                  <ul className={style.diets}>{ diets + " " }</ul>
                </div>
             </div>
          

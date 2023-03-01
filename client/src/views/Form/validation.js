@@ -1,5 +1,5 @@
 const validation = (input) => {
-
+    
       let errors = {};
       if (!input.name) {
         errors.name = '! Title  is required';
@@ -7,7 +7,7 @@ const validation = (input) => {
         errors.summary = '! summary  is required';
       } else if (!input.healthScore) {
         errors.healthScore = '! healthScore  is required';
-      } else if (!input.diet.length) {
+      } else if (!input.diet) {
         errors.diet = 'You must select at least one type of diet';
       }
     

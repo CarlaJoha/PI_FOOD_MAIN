@@ -2,6 +2,7 @@
    display: flex;
    flex-direction: row;
    gap: 3em;
+   
 }
 
 .title{
@@ -10,11 +11,11 @@
 .containerImage{
    margin-top: 50px;
    border-radius: 10px;
-   width: 800px;
+   width: 50%;
    height: 100%;
    align-items: center;
-   color: black;
 }
+
 .image{
    width: 80%;
    border-radius: 20px;
@@ -24,13 +25,18 @@
 }
 
 .textContainer{
-   margin-top: 50px;
-   border-radius: 10px;
-   width: 800px;
-   height: 100%;
    display: flex;
+   width: 50%;
    flex-direction: column;
+   height: 100%;
+   margin-top: 50px;
+   margin-right: 3%;
+   border-radius: 10px;
    align-items: center;
    font-size: 20px;
    color: black;
+   background-image: linear-gradient(-225deg, #ffffff50 0%, #ac6b16 52%, #d6a955 100%);
+   min-height: 100%;
+   overflow: hidden;
+   box-shadow: 1px 1px 20px hsl(37, 97%, 15%);
 }

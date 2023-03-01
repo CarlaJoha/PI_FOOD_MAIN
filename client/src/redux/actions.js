@@ -16,7 +16,8 @@ export const getAllRecipes = () => {
    return async (dispatch) => {
       try{
       let response = await axios.get('http://localhost:3001/recipes')//http://localhost:3001/recipes
-      return dispatch({ type: GET_ALL_RECIPES, payload: response.data })//revisar esto cuando me traiga la el back
+      console.log(response?.data[0].healthScore);
+      return dispatch({ type: GET_ALL_RECIPES, payload: response?.data })//revisar esto cuando me traiga la el back
       } catch(error){
          console.log("Error en getAllRecipes action")
       }
@@ -27,8 +28,9 @@ export const getAllRecipes = () => {
 export const getRecipesByName = (name) => {
    return async (dispatch) => {
       try{
-      let response = await axios.get(`http://localhost:3001/recipes?name=${name}`)//http://localhost:3001/recipes
-      return dispatch({ type: GET_BY_NAME, payload: response.data })
+         let response = await axios.get(`http://localhost:3001/recipes?name=${name}`)//http://localhost:3001/recipes
+         let infoByName = response?.data;
+         return await dispatch({ type: GET_BY_NAME, payload: infoByName })
       } catch(error){
          console.log("Error en getRecipesByName action")
       }
@@ -65,6 +67,7 @@ export const getAllDiets = () => {
    return async (dispatch) => {
       try{
          let infoDiets = await axios.get('http://localhost:3001/diets')
+         // console.log(infoDiets.data)
          return dispatch({ type: GET_ALL_DIETS, payload: infoDiets.data })//QUITAR .results cuando venga de la Api
       } catch(error){
          console.log("Error en getAllDiets action")
@@ -87,7 +90,7 @@ export const filterCreated = (payload) => {
    return { type: FILTER_CREATED, payload }
 }
 
-//9. ORDENAR POR NAME
+//9. ORDENAR ASCENDENTE Y DESCENDENTE POR NAME
 export const orderByName = (payload) => {
    return { type: ORDER_BY_NAME, payload }
 }
