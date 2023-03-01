@@ -42,15 +42,17 @@ const getAllDiets = async() => {
       });
    //retorno las dietas de la db
    let totalDietsDB = await Diet.findAll();
+   let dietsTotalDB = totalDietsDB.map((diet) => diet.name)
 
-   return totalDietsDB;
+  
+   return dietsTotalDB;
    } catch(error){
       throw new Error('Error in getAllDiets controller')
    }
 
 };
 
-
+console.log(getAllDiets()); 
 
 //..............................................................................
 

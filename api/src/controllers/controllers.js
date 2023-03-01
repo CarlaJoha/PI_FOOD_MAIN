@@ -12,7 +12,7 @@ const getAllApi = async() => {
    try{
      const apiUrl = await axios.get(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b`)
 
-   let recipesApi = apiUrl.data.results.map((element) => {
+   let recipesApi = await Promise.all(apiUrl.data.results.map((element) => {
       return {
          id: element.id,
          name: element.title,
@@ -21,9 +21,10 @@ const getAllApi = async() => {
          summary: element.summary,
          diets: element.diets.map((diet) => diet),
          // diets: element.diets,
-         instructions: element.analyzedInstructions.map((steps) => steps)
-      }
-   })
+         instructions: element.analyzedInstructions?.map((element) => element.steps.map((element) => element.step))
+         
+      }})
+   )
    return recipesApi;
    
    } catch(error){

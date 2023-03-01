@@ -8,7 +8,7 @@ const { Op } = require('sequelize')
 const getRecipesByName  = async (name) => {
  
    let findNameDB = await Recipe.findAll({
-      where : { name: { [Op.iLike]:`%${name}%`} }
+      where : { name: { [Op.iLike]:`%${name}%`} }//devuelve un resultado con todas las combinaciones posibles
    });
 
    let response = await axios(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b`)
@@ -17,7 +17,7 @@ const getRecipesByName  = async (name) => {
    
    if(search.length > 0){
       
-      let recipesMatchName = search.map((element) => {
+      let recipesMatchName = await search.map((element) => {
          return {
             id: element.id,
             name: element.title,

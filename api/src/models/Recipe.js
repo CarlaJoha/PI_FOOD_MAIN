@@ -19,22 +19,22 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
-      defaultValue: '../../ratuille.jpg',
+      defaultValue: '../../ratatuille.jpg',
       allowNull: true,//NO es obligatoria - EST
     },
 
     summary: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,//SI es obligatorio
     },
 
     healthScore: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
 
     instructions: {
-      type: DataTypes.ARRAY(DataTypes.JSONB),
+      type: DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.STRING)),
       allowNull: false,
     },
 
