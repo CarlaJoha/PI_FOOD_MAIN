@@ -13,34 +13,35 @@ const Form = () => {
    const dispatch = useDispatch();
    const history = useHistory();
    const allDiets = useSelector((state) => state.allDiets)
+   // const allRecipes = useSelector((state) => state.allRecipes)
   
-
-   const [ errors, setErrors ] = useState({
-      name: "",
-      summary: "",
-      image: "",
-      healthScore: 0,
-      diets: "",
-      instructions: "",
-   })
-
-   
    //LOCAL STATE del Form
    const [ input, setInput ] = useState({
       name: "",
       summary: "",
       image: "",
-      healthScore: 1,
-      diets: "",
-      instructions:""   
+      healthScore: 0,
+      diets: [],
+      instructions:[]   
    })
    console.log(input)
+
+   //
+   const [ errors, setErrors ] = useState({
+      name: "",
+      summary: "",
+      image: "",
+      healthScore: 0,
+      diets: [],
+      instructions: "",
+   })
+
    
    const handleChange = (event) => {//escucha los cambios del los inputs
       setInput({ ...input, [event.target.name] : event.target.value })
       setErrors(validation({
          ...input,
-         [event.target.name] : event.target.value
+         [event.target.name] : event.target.value//modifico el state errors
       }))
    }
 
@@ -57,20 +58,27 @@ const Form = () => {
       })}
    }
 
-   const handleSubmit = (event) => {
+   const handleSubmit = async (event) => {
       event.preventDefault();
       // console.log(input);
-      dispatch(postRecipe(input))
-      alert("Recipe created successfully")
-      setInput({
+       setInput({
          name: "",
          summary: "",
          image: "",
-         healthScore: 1,
-         instructions: "",
-         diets: "",
+         healthScore: 0,
+         instructions: [],
+         diets: [],
       })
-
+      
+      dispatch(postRecipe(
+         input.name, 
+         input.summary, 
+         input.image, 
+         input.healthScore, 
+         [input.instructions],
+         input.diets
+      ))
+      // alert("Recipe created successfully")
       history.push('/recipes')
    };
 
@@ -81,7 +89,7 @@ const Form = () => {
    
    return(
       <div>
-      <form className={style.container} onSubmit={(event) => handleSubmit(event)} >
+      <form className={style.container} onSubmit={(event) => handleSubmit(event)}  name="form" >
       <h1 className={style.h1}>CREATE YOUR RECIPE</h1>
       <button >
             <Link to='/recipes'>BACK</Link>
@@ -106,7 +114,7 @@ const Form = () => {
             name="healthScore"
             value={input.healthScore}
             placeholder='100'
-            min="1"
+            min="0"
             max="100"
             className={style.inputHealthscore}/>
             { errors.healthScore && <p className={style.errors}>{errors.healthScore}</p> }
@@ -153,10 +161,12 @@ const Form = () => {
                             <input
                                 onChange={(e) => handleCheckBox(e) } 
                                 key={diet.id}
+                                name="diet"
                                 type="checkbox"
                                 value={diet.id} />{diet.name}
                         </label>))
                 }
+                { errors.diets && <p className={style.errors}>{errors.diets}</p> }
             </div>
 
          {/* <label className={style.label} htmlFor="addDiet">Add Diet:</label>
@@ -169,7 +179,7 @@ const Form = () => {
          /> */}
          
          <button className={style.button} >CREATE RECIPE</button>
-
+         { errors.form && <p className={style.errors}>{errors.form}</p> }
       </form>
       </div>
    )

@@ -16,7 +16,7 @@ export const getAllRecipes = () => {
    return async (dispatch) => {
       try{
       let response = await axios.get('http://localhost:3001/recipes')//http://localhost:3001/recipes
-      console.log(response?.data[0].healthScore);
+      // console.log(response?.data[0].healthScore);
       return dispatch({ type: GET_ALL_RECIPES, payload: response?.data })//revisar esto cuando me traiga la el back
       } catch(error){
          console.log("Error en getAllRecipes action")
@@ -29,8 +29,8 @@ export const getRecipesByName = (name) => {
    return async (dispatch) => {
       try{
          let response = await axios.get(`http://localhost:3001/recipes?name=${name}`)//http://localhost:3001/recipes
-         let infoByName = response?.data;
-         return await dispatch({ type: GET_BY_NAME, payload: infoByName })
+         let infoByName = response.data;
+         return dispatch({ type: GET_BY_NAME, payload: infoByName })
       } catch(error){
          console.log("Error en getRecipesByName action")
       }
@@ -51,11 +51,12 @@ export const getRecipesDetail = (id) => {
 }
 
 //4. POST RECETA DESDE LOS DATOS DEL PAYLOAD (FORM)
-export const postRecipe = (payload ) => {
+export const postRecipe = (name, image, summary, healthScore, instructions, diets ) => {
    return async (dispatch) => {
-   try{
-      let infoPost = await axios.post('http://localhost:3001/recipes', payload)
-      return dispatch({ type: POST_RECIPE, payload: infoPost.data })
+      try{
+         let infoPost = await axios.post('http://localhost:3001/recipes', {name, image, summary, healthScore, instructions, diets})
+         console.log(dispatch);
+         return dispatch({ type: POST_RECIPE, payload: infoPost.data })
    } catch(error){
       console.log("Error en postRecipe action")
    }
