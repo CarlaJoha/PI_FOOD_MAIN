@@ -17,7 +17,7 @@ const getRecipesByName  = async (name) => {
    
    if(search.length > 0){
       
-      let recipesMatchName = await search.map((element) => {
+      let recipesMatchName = search.map((element) => {
          return {
             id: element.id,
             name: element.title,
@@ -25,10 +25,11 @@ const getRecipesByName  = async (name) => {
             healthScore: element.healthScore,
             summary: element.summary,
             diets: element.diets.map((diet) => diet),
-            instructions: element.analyzedInstructions.map((steps) => steps)
+            instructions: element.analyzedInstructions.flatMap((element) => 
+            element.steps.map((element) => element.step))
             }
       })
-      return [ ...findNameDB, ...recipesMatchName ];
+      return recipesMatchName.concat(findNameDB);
       
       } else{
          throw new Error(`No recipe found with ${name}`)

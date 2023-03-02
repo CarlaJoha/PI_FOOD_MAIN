@@ -21,7 +21,8 @@ const getAllApi = async() => {
          summary: element.summary,
          diets: element.diets.map((diet) => diet),
          // diets: element.diets,
-         instructions: element.analyzedInstructions?.map((element) => element.steps.map((element) => element.step))
+         instructions: element.analyzedInstructions.flatMap((element) => 
+         element.steps.map((element) => element.step))
          
       }})
    )
@@ -37,23 +38,24 @@ const getAllApi = async() => {
 //LA INFO DE LA BASE DE DATOS
 const getDbInfo = async () => {
    try{
-   return await Recipe.findAll({
-      include:{
-         model: Diet,
-         atributtes: ['name'],
-         through: {
-            atributtes: [],
-         }
-      }
-   })
+      const infoDb = await  Recipe.findAll({
+            include: [
+               {
+                  model: Diet,
+               }
+            ]
+
+      })
+      return infoDb;
    }catch(error){
-      console.log('Error en getDbInfo controller')
+      console.log('Error en getDbInfo controller');
    }
 };
 
 //CONCATENO LAS DOS INFORMACIONES DE LA API Y DE LA DB
 const getAllInfo = async () => {
    try{
+      
    const apiInfo = await getAllApi();
    const dbInfo = await getDbInfo();
    // const totalInfo = apiInfo.concat(dbInfo);
@@ -70,3 +72,18 @@ module.exports = {
    getDbInfo,
    getAllInfo
 }
+
+
+/*try{
+   return await Recipe.findAll({
+      include:{
+         model: Diet,
+         atributtes: ['name'],
+         through: {
+            atributtes: [],
+         }
+      }
+   })
+   }catch(error){
+      console.log('Error en getDbInfo controller')
+   } */

@@ -2,11 +2,11 @@ require('dotenv').config();// m etraigo lo que está en .env, la info ahora la m
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, API_KEY } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;//, API_KEY
 
 
 // CREACION DE LA BASE DE DATOS
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?api_key=${API_KEY}`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {//?api_key=${API_KEY}
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -32,11 +32,11 @@ sequelize.models = Object.fromEntries(capsEntries);//ACA ESTAN MIS MODELOS
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const modelRecipe = require('./models/Recipe')
-const modelDiet = require('./models/Diet')
+// const modelRecipe = require('./models/Recipe')
+// const modelDiet = require('./models/Diet')
 
-modelRecipe(sequelize);
-modelDiet(sequelize);
+// modelRecipe(sequelize);
+// modelDiet(sequelize);
 
 const { Recipe, Diet } = sequelize.models;
 

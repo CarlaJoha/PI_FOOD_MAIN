@@ -56,20 +56,17 @@ router.post('/', async(req, res) => {
                image,
                healthScore,
                instructions,
+               diets,
                createdInDb
          });
-
-            let dietsDB = await Diet.findAll({
-               where: { name: diets}
-            })
-      await newRecipe.addDiet(dietsDB)
-
+         console.log(newRecipe);
+         
       return res.status(200).json( newRecipe )
 
    
    
    } catch (error) {
-       res.status(404).send({error: error.message})  
+       res.status(404).send({error: "We couldn't create the recipe"})  
    }
 });
 
