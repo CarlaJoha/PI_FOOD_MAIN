@@ -26,20 +26,20 @@ const getAllDiets = async() => {
       })
  
     
-      const filterR = info.map( (element) => element && element.diets)
+      const filterR = info.map( (element) => element && element.diets)// todos los elementos diets de la API array de arrays
 
-      const dietas = filterR.flat();
+      const dietas = filterR.flat();//aplano el array de array en un solo array, donde cada elemento es una dieta
 
-      let setdietas = new Set(dietas);
+      let setdietas = new Set(dietas);//elimino los repetidos y los devuelve en un objeto {}
 
-      const arreglo = Array.from(setdietas) ;  
+      const arreglo = Array.from(setdietas);//lo convierto en un array  
 
 
-   
       arreglo.forEach((diet) => { Diet.findOrCreate({
          where: { name: diet }
          })
       });
+      
    //retorno las dietas de la db
    let totalDietsDB = await Diet.findAll();
    let dietsTotalDB = totalDietsDB.map((diet) => diet.name)
@@ -49,10 +49,7 @@ const getAllDiets = async() => {
    } catch(error){
       throw new Error('Error in getAllDiets controller')
    }
-
 };
-
-console.log(getAllDiets()); 
 
 //..............................................................................
 
