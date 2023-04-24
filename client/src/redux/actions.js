@@ -29,9 +29,10 @@ export const getRecipesByName = (name) => {
    return async (dispatch) => {
       try{
          let response = await axios.get(`http://localhost:3001/recipes?name=${name}`)//http://localhost:3001/recipes
-         let infoByName = response.data;
+         let infoByName = await response.data;
          return dispatch({ type: GET_BY_NAME, payload: infoByName })
       } catch(error){
+         alert(`No recipe found with name ${name}`)
          console.log("Error en getRecipesByName action")
       }
    }
@@ -43,6 +44,7 @@ export const getRecipesDetail = (id) => {
    return async (dispatch) => {
       try{
       let response = await axios.get(`http://localhost:3001/recipes/${id}`)// /recipes/${id}   
+      // console.log(response.data);
       return dispatch({ type: GET_DETAIL, payload: response.data })
       } catch(error){
          console.log("Error en getRecipesDetail action")
@@ -51,13 +53,15 @@ export const getRecipesDetail = (id) => {
 }
 
 //4. POST RECETA DESDE LOS DATOS DEL PAYLOAD (FORM)
-export const postRecipe = (name, image, summary, healthScore, instructions, diets ) => {
+export const postRecipe = (name, healthScore, summary, instructions, image, diets ) => {
    return async (dispatch) => {
       try{
-         let infoPost = await axios.post('http://localhost:3001/recipes', {name, image, summary, healthScore, instructions, diets})
+         let infoPost = await axios.post('http://localhost:3001/recipes', {name, healthScore, summary, instructions, image, diets})
          console.log(dispatch);
+         alert("Recipe created successfully")
          return dispatch({ type: POST_RECIPE, payload: infoPost.data })
    } catch(error){
+      alert("We couldn't create the recipe")
       console.log("Error en postRecipe action")
    }
    }
@@ -92,8 +96,8 @@ export const filterCreated = (payload) => {
 }
 
 //9. ORDENAR ASCENDENTE Y DESCENDENTE POR NAME
-export const orderByName = (payload) => {
-   return { type: ORDER_BY_NAME, payload }
+export const orderByName = (value) => {
+   return { type: ORDER_BY_NAME, payload: value }
 }
 
 //10. ORDENAR POR HEALTHSCORE

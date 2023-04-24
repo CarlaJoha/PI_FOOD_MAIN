@@ -36,7 +36,7 @@ function Filter() {
    const handleOrderName = (event) => {
       dispatch(orderByName(event.target.value))
       setOrder(`Ordenado ${event.target.value}`)
-      // SetcurrentPage(1)
+      SetcurrentPage(1)
    }
    //ORDER HEALTH
    const handleOrderScore = (event) => {
@@ -44,7 +44,7 @@ function Filter() {
       setOrder(`Ordenado ${event.target.value}`)
    }
    //CLEAN
-   const handleClean = (event) => {
+   const handleClean = () => {
       // dispatch(clearRecipes(event.target.value));
       dispatch(getAllRecipes())
    }

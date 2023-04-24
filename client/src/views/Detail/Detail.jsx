@@ -3,8 +3,9 @@ import CardDetail from '../../components/Card/CardDetail/CardDetail';
 import style from './Detail.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { clearDetail, getRecipesDetail } from '../../redux/actions';
+import { clearDetail, getAllRecipes, getRecipesDetail } from '../../redux/actions';
 import { useParams, Link } from 'react-router-dom';
+
 
 
 
@@ -14,9 +15,14 @@ const Detail = () => {
 
    const { id } = useParams();
    const recipeDetail = useSelector((state) => state.recipeDetail)
+  
  
 
-   console.log(recipeDetail);
+   const handleButton = (event) => {
+      event.preventDefault();
+      dispatch(getAllRecipes())
+   }
+  
    useEffect(() => {
      dispatch(getRecipesDetail(id));
      dispatch(clearDetail())
@@ -28,6 +34,7 @@ const Detail = () => {
          <Link to="/recipes" >{"<< "}BACK
          </Link>
          <CardDetail />
+         <button onClick={(event) => handleButton(event)}>Prueba</button>
       </div>
    )
 }

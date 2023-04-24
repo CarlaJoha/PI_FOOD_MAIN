@@ -18,22 +18,22 @@ const Form = () => {
    //LOCAL STATE del Form
    const [ input, setInput ] = useState({
       name: "",
-      summary: "",
-      image: "",
       healthScore: 0,
+      summary: "",
+      instructions:[],  
+      image: "",
       diets: [],
-      instructions:[]   
    })
    console.log(input)
 
-   //
+   //Errors State
    const [ errors, setErrors ] = useState({
       name: "",
-      summary: "",
-      image: "",
       healthScore: 0,
-      diets: [],
+      summary: "",
       instructions: "",
+      image: "",
+      diets: [],
    })
 
    
@@ -42,7 +42,8 @@ const Form = () => {
       setErrors(validation({
          ...input,
          [event.target.name] : event.target.value//modifico el state errors
-      }))
+     })
+     )
    }
 
    const handleCheckBox = (event) => {
@@ -64,21 +65,21 @@ const Form = () => {
        setInput({
          name: "",
          summary: "",
-         image: "",
          healthScore: 0,
          instructions: [],
+         image: "",
          diets: [],
       })
       
       dispatch(postRecipe(
          input.name, 
-         input.summary, 
-         input.image, 
          input.healthScore, 
+         input.summary, 
          [input.instructions],
+         input.image, 
          input.diets
       ))
-      // alert("Recipe created successfully")
+     
       history.push('/recipes')
    };
 
@@ -116,17 +117,18 @@ const Form = () => {
             placeholder='100'
             min="0"
             max="100"
+            autoComplete="off"
             className={style.inputHealthscore}/>
             { errors.healthScore && <p className={style.errors}>{errors.healthScore}</p> }
 
-         <label className={style.label} htmlFor="summary">Summary:</label>
+         <label className={style.label} >Summary:</label>
          <textarea 
             onChange={handleChange}
             name="summary"
             value={input.summary}
             placeholder='Summary Recipe'
             className={style.textSummary}
-            autoComplete="on">
+            autoComplete="off">
          </textarea>
             { errors.summary && <p className={style.errors}>{errors.summary}</p> }
 
@@ -138,10 +140,11 @@ const Form = () => {
             value={input.instructions}
             className={style.textAreaInstructions}
             placeholder='Step-by-step explanation to make the recipe.'
+            autoComplete="off"
          >
          </textarea>
 
-         <label className={style.label} >Image:</label>
+         <label className={style.label} htmlFor="image">Image:</label>
          <input 
             onChange={handleChange}
             type="url" 
@@ -163,7 +166,7 @@ const Form = () => {
                                 key={diet.id}
                                 name="diet"
                                 type="checkbox"
-                                value={diet.id} />{diet.name}
+                                value={diet.name} />{diet.name + ""}
                         </label>))
                 }
                 { errors.diets && <p className={style.errors}>{errors.diets}</p> }
