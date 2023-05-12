@@ -1,0 +1,61 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ 
+ :root {
+   --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+   --line-height: 1.5;
+   --font-size: 16px;
+   --font-weight: 400;
+ 
+   --background-color: #242424;
+   --background-gradient: linear-gradient(-225deg, #666463 0%, #745045 52%, #524141 100%);
+   --color-scheme: light dark;
+   --color-text-grey: #524f56;
+   --color-text-white: #ffffff;
+   --color-text-red: #b90000;
+   --color-text-yellow: #ecd714;
+   --color-text-shadow: 3px 3px 5px #b90000;
+   
+   --box-shadow: 3px 3px 5px #5c5c5c;
+   --border-radius: 4px;
+   
+   --background-color-card: #3f3d3d;
+   --width-card: 3em;
+ 
+   --button-background: #b90000;
+   --button-paginate-size: 2.5em;
+   --button-paginate-border-color: #bbb4b4;
+   --button-paginate-color: #ebe1e1;
+ 
+   --button-hover-background: #4b4747;
+ 
+ 
+   font-synthesis: none;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-text-size-adjust: 100%;
+ }
+ 
+ a {
+   font-weight: 500;
+   color: var(--color-text-white);
+   text-decoration: inherit;
+ }
+ a:hover {
+   color: #535bf2;
+ }
+ 
+ body {
+   width: 100%;
+   min-height: 100vh;
+   color: var(--color-font);
+ }
+ 
+ h1 {
+   font-size: 3.2em;
+   line-height: 1.1;
+ }

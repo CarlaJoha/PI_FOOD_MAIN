@@ -1,33 +1,54 @@
-.container{
+.containerLanding{
+   width: 100%;
+   background-color:#ffffff ;
+   background-position:0cap;
+   position: fixed;
+}
+.containerImage{
+   width: 100%;
+   z-index: 0;
+   position: fixed;
+}
+.image{
+   width: 100%;
+   opacity: .68;
+}
+.h1{
+   width: 100%;
+   position: fixed;
+   z-index: 1;
+   color: var(--color-text-white);
+   display: flex;
+   height: 100vh;
+   margin-top: 3.5em;
+   justify-content: center;
+   font-size: 6em;
+   text-shadow: 5px 5px 5px #1b1616;
+}
+.linkContainer{
    width: 100%;
    height: 100vh;
-   background-image: url('../../assets/image/Landing1.jpg');
-   background-size: cover;
-   text-align: center;
-   flex-direction: column;
+   display: flex;
    justify-content: center;
-   align-items: center; 
-   background-attachment: scroll;
-   text-align: center; 
-   border: 4px solid rgb(221, 130, 11);
-} 
-
-h1{
-   color: white;
-   font-size: 50px;
+   margin-top: 30em;
 }
-
 .button{
-   width: 150px;
-   height: 35px;
-   padding: .3em 0;
-   border-color: brown;
-   background: rgb(203, 58, 5);
+   width: 10em;
+   height: 2.8em;
+   border-color: var(--button-paginate-border-color);
+   background: var(--button-background);
+   padding: .7em;
    font-size: .9rem;
    font-weight: bold;
-   border-radius: 1em;
+   border-radius: .3em;
    cursor: pointer;
+   color: var(--button-paginate-color);
+   box-shadow:  2px 2px 2px #f1eeee;
+   position: absolute;
+   z-index: 3;
 }
 .button:hover{
-   background-color: rgb(179, 179, 150);
+   background-color: rgb(255, 255, 250);
+   color:var(--color-text-red);
+   box-shadow:  2px 2px 2px #141414;
 }

@@ -1,30 +1,31 @@
 import style from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 import  SearchBar  from '../SearchBar/SearchBar';
-// import React, { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useDispatch } from 'redux-react';
+import {  getAllRecipes } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+import { useEffect} from 'react';
 
 const NavBar = () => {
-//    const dispatch = useDispatch();
-//    const currentPage = useSelector( (state) => state.currentPage);
-//    const allRecipes  = useSelector((state) => state.allRecipes);
+   const dispatch = useDispatch();
 
-// const HandleChangeEvent = (event) =>{
-//    event.preventDefault();
-//    dispatch(currentPage)
-// }
 
-// // useEffect(() => {
-// //    dispatch(allRecipes)
-// // }, [])
+   useEffect(() => {
+      dispatch(getAllRecipes())
+   }, [dispatch]);
 
-// onClick={HandleChangeEvent}
+const handleClick = (event) => {
+   event.preventDefault();
+   dispatch(getAllRecipes())
+  }
+
    return(
-      <nav className={style.container}>
-         <Link to="/recipes" >HOME</Link>
-         <Link to="/form" >CREATE RECIPE</Link>
+      <nav className={style.containerNavBar}>
+         <Link className={style.link} to="/recipes" >HOME</Link>
+         <Link className={style.link} to="/form" >CREATE RECIPE</Link>
          <SearchBar ></SearchBar>
+         <button className={style.buttonRefresh}            
+            onClick={(event) =>  handleClick(event)  }>REFRESH
+         </button>
       </nav>
    )
 

@@ -1,60 +1,76 @@
-.container{
- 
-   border-radius: 10px;
-   width: 30%;
-   height: 60%;
+.containerCard{
+   width: 20em;
+   height: 25em;
    display: flex;
    flex-direction: column;
-   gap: .5em;
    margin-bottom: 2em;
    cursor: pointer;
    backface-visibility: visible;
-   background-color: whitesmoke;
-   overflow: hidden;
-   box-shadow: 1px 1px 20px hsl(37, 97%, 15%);
+   background-color: var(--background-color-card);
+   z-index: 1;
+   box-shadow: var(--box-shadow);
 
 }
+.containerCard:hover{
+   background-color: rgba(255, 228, 196, 0.315);
+   opacity: 1.0;
+}
+.containerImage{
+   width: 100%;
+   height: 15em;
 
+}
 .image{
    width: 100%;
-   border-radius: 4px;
    display: flex;
    align-items: center;
-   overflow: hidden;
+   overflow:visible;
    padding: 0%;
    height: 100%;
    position:relative;
 }
+
 .informationCard{
-  align-items: center;
-  height: 100%;
-  position:relative;
-  padding: 0;
-  
+   height: 10em;
+  color: var(--color-text-white);  
   /* border: 1px solid red; */
-}
-.informationCard:hover{
-   background-color: rgba(255, 228, 196, 0.315);
-   opacity: 1.0 ;
 }
 
 .name{
-   padding: .5em;
+   height: 2em;
+   position: relative;
+   padding: .5em .8em;
+   text-overflow:ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   font-size: 1.6rem;
+   margin-bottom: .5em;
+   /* border: 1px solid red; */
 }
 .containerDiets{
    display: flex;
    flex-direction: row;
- 
+   align-items: center;
+   height: 5em;
+   font-size: .8em;
+   padding: .3em;
+   /* border: 1px solid rgb(4, 0, 255); */
 }
 .dietsTitle{
-   /* border: 1px solid red; */
+   font-size: 1rem;
    margin: 1em;
    padding: .8em;
+   /* border: 1px solid rgb(102, 255, 0); */
 }
 .diets{
-   /* border: 1px solid green; */
+   width: 18em;
    list-style-type: none;
-   width: 50%;
+   margin: 0;
    padding: 0%;
-   text-align: left;
+   text-align: left;   
+   /* border: 1px solid rgb(0, 195, 255); */
+}
+.labelHealthScore{
+   font-size: .9em;
+   color: var(--color-text-yellow)
 }

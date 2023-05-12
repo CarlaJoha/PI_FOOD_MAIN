@@ -1,9 +1,40 @@
-.container{
-   height: 50px;
+.containerNavBar{
+   width: 100%;
    display: flex;
+   padding: 2em;
    flex-direction: row;
+   align-items: center;
    justify-content: space-around;
-   padding-top: 1.2em;
-   border-radius: 6px;
-   background-image: linear-gradient(-225deg, #643b288f 0%, #ac6b168a 52%, #d6a9558c 100%);
+   background-color:#080808c7;
+   font-size: large;
+   scroll-behavior: smooth; 
+   /* border: 1px solid red; */
+}
+nav{
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 2;
+}
+.buttonRefresh{
+   width: 6em;
+   height: 2.5em;
+   border-radius: 3px;
+   color: var(--button-paginate-color);
+   background-color: var(--button-background);
+   box-shadow: var(--box-shadow);
+}
+.buttonRefresh:hover {
+   width: 6.5em;
+   height: 3em;
+   color: var(--color-text-red);
+   background-color: whitesmoke;
+   box-shadow: var(--box-shadow);
+   font-weight: bold;
+   cursor: pointer;
+}
+.link:hover{
+   font-size: 1.2em;
+color: var(--color-text-red)
 }

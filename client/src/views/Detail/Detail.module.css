@@ -1,11 +1,31 @@
-.container{
+.containerDetail{
    height: 100%;
-   margin: 0;
+   padding: 3em 2em;
    text-align: center;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   background-image: linear-gradient(-225deg, #643b28 0%, #ac6b16 52%, #d6a955 100%);
+   background-image: linear-gradient(--background-gradient);
    text-align: center;
+}
+.buttonHome{
+   width: 8em;
+   height: 3em;
+   border-radius: 3px;
+   font-weight: bold;
+   color: var(--button-paginate-color);
+   background-color: var(--button-background);
+   border-color: var(--button-paginate-border-color);
+}
+.buttonHome:hover{
+   color: var(--color-text-red);
+   background-color: whitesmoke;
+   box-shadow: var(--box-shadow);
+   font-weight: bold;
+   cursor: pointer;
+}
+.clipLoader{
+   display: block;
+   margin-top: 15em;
 }

@@ -1,8 +1,55 @@
 .container{
-   width: 40%;
-   border: 1px solid green;
-   margin: 1em;
+   width: 80%;
+   margin: 2em;
    display: flex;
    justify-content: space-around;
-   
+   /* border: 1px solid red; */
+}
+.selectDiets{
+   box-sizing: border-box;
+   color: #191919;
+   padding: 0 1em;
+   height: 2.5em;
+   width: 15em;
+   border-radius:.3em;
+   cursor: pointer;
+}
+.selectCreate{
+   box-sizing: border-box;
+   color: #191919;
+   padding: 0 1em;
+   height: 2.5em;
+   width: 15em;
+   border-radius: .3em;
+   cursor: pointer;
+}
+.selectOrderName{
+   box-sizing: border-box;
+   color: #191919;
+   padding: 0 1em;
+   height: 2.5em;
+   width: 15em;
+   border-radius: .3em;
+   cursor: pointer;
+}
+.selectScore{
+   box-sizing: border-box;
+   color: #191919;
+   padding: 0 1em;
+   height: 2.5em;
+   width: 15em;
+   border-radius: .3em;
+   cursor: pointer;
+}
+.buttonReload{
+   cursor: pointer;
+   width: 6em;
+   height: 2.4em;
+   color: var(--color-text-red);
+   font-weight: bold;
+   box-shadow: var(--box-shadow);
+}
+.buttonReload:hover{
+   background-color: var(--button-background);
+   color: var(--color-text-white)
 }

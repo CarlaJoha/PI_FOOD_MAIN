@@ -1,15 +1,14 @@
-.container{
+.containerHome{
    height: 100%;
-   margin: 0;
+   margin-top: 7em;
    text-align: center;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   background-image: linear-gradient(-225deg, #643b28 0%, #ac6b16 52%, #d6a955 100%);
    text-align: center;
 }
-
-.buttonRefresh{
-   margin: 2em;
+.spinnerLoader{
+   display: block;
+   margin-top: 10em;
 }

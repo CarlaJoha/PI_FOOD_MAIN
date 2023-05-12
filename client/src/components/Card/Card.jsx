@@ -3,24 +3,24 @@ import style from './Card.module.css'
 import { Link } from 'react-router-dom';
 
 
-const Card = ({ image, name, diets, id}) => {
+const Card = ({ image, name, diets, id, healthScore}) => {
 
    return(
-      <div className={style.container}>
+      <div className={style.containerCard}>
 
          <Link to={`/detail/${id}`}>
-            <div>
+            <div className={style.containerImage}>
                <img className={style.image} src={image} alt={name} />
             </div>
-         </Link>
-
+            <label className={style.labelHealthScore}>Health Score : {healthScore}</label>
             <div className={style.informationCard}>
-               <h2 className={style.name}>{name}</h2>
+               <h2 className={style.name} >{name}</h2>
                <div className={style.containerDiets}>   
                   <h3 className={style.dietsTitle}>Diets:</h3>
-                  <ul className={style.diets}>{ diets + " " }</ul>
+                  <ul className={style.diets}>{diets.join(', ')}</ul>
                </div>
             </div>
+         </Link>
          
       </div>
    )

@@ -1,25 +1,28 @@
-.container{
-   position: absolute;
-   width: 271px; 
+.containerSearchBar{
+   position: relative;
+   display: flex;
+   align-items: center;
+   flex-wrap: nowrap;
+   width: 25em; 
+   height: 2.3em;
+   /* border: 1px solid red; */
 }
-.input{
+.inputSearchBar{
    box-sizing: border-box;
    color: #191919;
-   padding: 8px 8px 8px 25px;
-   width: 100%;
-   border-radius: 5px;
+   padding: 0 1em;
+   height: 2.5em;
+   width: 80%;
+   border-radius: 3px;
 }
-
-.icon{
-   color: #191919;
-   position: absolute;
-   width: 20px;
-   height: 20px;
-   left: 12px;
-   top: 10%;
-   transform: translateY(-10%);
-}
-
-.button{
+.buttonSearchBar{
    cursor: pointer;
+   width: 19%;
+   height: 2.4em;
+   color: var(--color-text-red);
+   font-weight: bold;
+ }
+ .buttonSearchBar:hover{
+   background-color: var(--button-background);
+   color: var(--color-text-white)
  }
