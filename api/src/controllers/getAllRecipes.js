@@ -26,6 +26,7 @@ const getAllApi = async() => {
          
       }})
    )
+   // console.log(recipesApi);
    return recipesApi;
    
    } catch(error){
@@ -33,7 +34,7 @@ const getAllApi = async() => {
    }
 };
 
-
+// getAllApi()
 
 //LA INFO DE LA BASE DE DATOS
 const getDbInfo = async () => {
@@ -72,18 +73,3 @@ module.exports = {
    getDbInfo,
    getAllInfo
 }
-
-
-/*try{
-   return await Recipe.findAll({
-      include:{
-         model: Diet,
-         atributtes: ['name'],
-         through: {
-            atributtes: [],
-         }
-      }
-   })
-   }catch(error){
-      console.log('Error en getDbInfo controller')
-   } */

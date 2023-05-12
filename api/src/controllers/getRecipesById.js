@@ -21,9 +21,9 @@ const getRecipesById = async(id) => {
      const apiRecipesId = await axios.get(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b`);
  
      let search = apiRecipesId.data.results.find((element) => element.id === Number(id));
-     
      if(search){
-        
+      //   console.log("acá",search);
+
         let recipesId = {
            
            id: search.id,
@@ -32,11 +32,10 @@ const getRecipesById = async(id) => {
            healthScore: search.healthScore,
            summary: search.summary,
            diets: search.diets.map((diet) => diet),
-           // diets: element.diets,
            instructions: search.analyzedInstructions.flatMap((element) => 
-           element.steps.map((element) => element.step))
+           element.steps.map((element) => element.step)),
          }
-      
+      // console.log(recipesId.instructions);
       return recipesId;
 
    }
@@ -49,70 +48,3 @@ const getRecipesById = async(id) => {
 module.exports = {
    getRecipesById   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const getRecipesById = async(id) => { 
-   
-//    const recipeTotal= await getAllInfo()
-//   if(id){
-//     let recipeId= recipeTotal.filter(el => Number(el.id) === Number(id))
-//     return recipeId
-//   }
-// };
-
-// module.exports = {
-//    getRecipesById   
-// }
-
-
-
-
-
-// const getRecipesById = async(id) => { 
-   
-//    if(id.length === 36){
-//       const findInDB = await Recipe.findByPk(id);
-      
-//       if(findInDB) return findInDB;
-
-//    } else {
-
-//      const apiRecipesId = await axios.get(`https://run.mocky.io/v3/0fc37af7-8b1a-482e-94af-0bf78c3bca8b/recipes/${id}`);
-//      let search = apiRecipesId.data.results.find((element) => element.id === Number(id));
-    
-//      if(search){
-//       const instructionsSteps = []
-//       search.analyzedInstructions.map((el) => el.steps.map((elem) => instructionsSteps.push(elem.step)) )
-      
-//       let recipesId = {
-         
-//             id: search.id,
-//             name: search.title,
-//             image: search.image,
-//             healthScore: search.healthScore,
-//             summary: search.summary,
-//             // diets: element.diets.map((diet) => diet),
-//             diets: search.diets,
-//             instructions: instructionsSteps 
-            
-//       } 
-//       return recipesId;
-
-//       } else{
-//          throw new Error(`we dont have a recipe with id ${id}`);
-//       }
-//    }
-    
-// };
